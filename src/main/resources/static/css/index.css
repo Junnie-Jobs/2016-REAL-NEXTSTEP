@@ -1,0 +1,81 @@
+.clear_block {
+	clear: both;
+}
+
+#chatlog {
+	width: 80%;
+	height: 500px;
+	margin-top: 20px;
+	border-radius: 5px;
+	background-color: rgba(0, 0, 0, 0.1);
+	padding-top: 10px;
+}
+
+.comment_frame textarea {
+	background-color: white;
+	border: 1px solid gray;
+	resize: none;
+	width: 50%;
+	height: 75px;
+	overflow: hidden;
+	min-height: 75px;
+	color: #4d4d4d;
+	line-height: 18px;
+	padding: 10px;
+	border-radius: 5px;
+	float: left;
+}
+
+.comment_send {
+	width: 85px;
+	height: 40px;
+	text-align: center;
+	background-color: #e2e4e6;
+	border-radius: 5px;
+	margin-top: 55px;
+	margin-left: 20px;
+	cursor: pointer;
+	float: left;
+}
+
+.comment_box {
+	float: left;
+	width: 95%;
+	height: auto;
+	list-style-type: none;
+	border: 3px solid black;
+}
+
+.comment_box .comment {
+	width: 90%;
+	/* 	height: 30px; */
+	margin-left: 20px;
+	margin-top: 20px;
+	background-color: white;
+	list-style-type: none;
+}
+
+.comment_box .comment .content {
+	width: 80%;
+	background-color: white;
+	float: left;
+	border-radius: 5px;
+}
+
+.comment_box .comment .reply_submit {
+	float: left;
+	height: 30px;
+	margin-left: 20px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.comment_box .reply_content {
+	width: 500px;
+	height: 20px;
+	background-color: white;
+	float: right;
+	border: 1px solid black;
+	list-style-type: none;
+	display: block;
+}

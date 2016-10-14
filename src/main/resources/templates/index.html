@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="css/index.css">
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	crossorigin="anonymous"></script>
+</head>
+<body>
+	<h1>SSE Test</h1>
+	<form role="form" id="form">
+		<div class="comment_frame">
+			<textarea id="message" class="comment_contents_form z-depth-1"
+			placeholder="Write a comment..."></textarea>
+		</div>
+		<button type="submit" class="comment_send">Send</button>
+	</form>
+	<div class="clear_block"></div>
+	<div id="chatlog"></div>
+
+	<script>
+
+	var connected = false;
+	var $reply_form_html =
+	"<div class='reply_form'>"
+	+ "<input type='text' class='reply' />"
+	+ "<div class='reply_submit'>submit</div>"
+	+"</div>";
+
+	var reply_submit = function(e){
+		var content = $('.reply').val();
+		var data = {};
+
+		data.id = $(e.target).closest(".comment").data("id");
+		data.content = content;
+
+		$.ajax({
+			"url" : "/reply",
+			"type" : "POST",
+			"data" : data
+		}).done(function(data) {
+			console.log(data);
+			$(".reply_form").remove();
+		}).fail(function() {
+			console.log("modfiy event fail");
+		})
+	}
+
+	var connect = function() {
+		var source = new EventSource('/stream');
+		$(source).on("open", function(e){
+			console.log('connected');
+		});
+
+		source.addEventListener('message', function(e) {
+			console.log(e.data);
+			var message = JSON.parse(e.data);
+			var outMesage = $('<div class="comment_box" data-id='+message.id+'>'
+			+ '<ul class="comment" data-id='+message.id+'>'
+			+ '  <li class="content">'
+			+ message.content
+			+ '</li>'
+			+ '	 <button class="create_reply"> reply </button>'
+			+ '</ul>'
+			+ '<ul class="reply_box" data-id='+message.id+'></ul>'
+			+ '</div>');
+			$("#chatlog").append(outMesage);
+
+		}, false);
+
+		source.addEventListener('replyEvent', function(e) {
+			var reply = JSON.parse(e.data);
+			var discussionId = reply.discussion.id;
+			var html = "<li class='reply_content' data-id="+reply.id+">"
+			+ reply.content + "</li>";
+
+			console.log("discussionId :" + discussionId);
+
+			var $item_list = [];
+			var $item_list = $(".reply_box");
+			console.log($item_list);
+
+			for (var i = 0; i < $item_list.length; i++) {
+
+				if ($item_list[i].dataset.id == discussionId) {
+					var asd = $item_list[i];
+					$(asd).append(html);
+					break;
+				}
+
+			}
+
+		}, false);
+
+		source.addEventListener('error', function(e) {
+			if (e.readyState == EventSource.CLOSED) {
+				connected = false;
+				connect();
+			}
+		}, false);
+	};
+
+	var submit = function(e){
+		event.preventDefault();
+		var message = $('#message').val();
+		var data = {};
+		data.message = message;
+
+		$.ajax({
+			"url" : "/chat",
+			"type" : "POST",
+			"data" : data
+		}).done(function(data) {
+			console.log(data);
+		}).fail(function() {
+			console.log("modfiy event fail");
+		})
+	}
+
+	$(function() {
+		connect();
+		$("#chatlog").on("click", ".create_reply", function(e) {
+			$(e.target).after($reply_form_html);
+		});
+		$("#chatlog").on("click", ".reply_submit", reply_submit);
+		$("#form").on("submit", submit);
+	});
+	</script>
+</body>
+</html>
+
+<!-- // $(source).on("message", function(e){
+// 	console.log(e.data);
+// 	var message = JSON.parse(e.data);
+// 	var outMesage = $('<div class="comment_box" data-id='+message.id+'>'
+// 			+ '<ul class="comment" data-id='+message.id+'>'
+// 			+ '  <li class="content">'
+// 			+ message.content
+// 			+ '</li>'
+// 			+ '	 <button class="create_reply"> reply </button>'
+// 			+ '</ul>'
+// 			+ '<ul class="reply_box" data-id='+message.id+'></ul>'
+// 			+ '</div>');
+// 	$("#chatlog").append(outMesage);
+//
+// }); -->

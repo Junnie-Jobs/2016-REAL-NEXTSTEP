@@ -1,5 +1,5 @@
 package org.nhnnext.domain;
 
-public enum LectureState {
+public enum CourseState {
 	UPCOMING, IN_SESSION
 }

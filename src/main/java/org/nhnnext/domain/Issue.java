@@ -18,7 +18,7 @@ public class Issue extends AbstractPersistable<Long> {
 	private String title;
 
 	@ManyToOne
-	private Course course;
+	private Lecture course;
 
 	@OneToMany(mappedBy = "issue")
 	@OrderColumn

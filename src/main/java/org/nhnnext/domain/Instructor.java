@@ -6,15 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 @Entity
 public class Instructor extends User{
 	
 	@OneToMany(mappedBy = "instructor")
-	private List<Lecture> lectures;
+	private List<Course> courses;
 	
 	public Instructor(){}
 	

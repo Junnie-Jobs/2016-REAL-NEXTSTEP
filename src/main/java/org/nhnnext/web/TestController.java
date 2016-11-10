@@ -4,44 +4,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.nhnnext.domain.Course;
-import org.nhnnext.domain.Instructor;
+import org.nhnnext.domain.Lecture;
 import org.nhnnext.domain.User;
 import org.nhnnext.domain.repository.CourseRepository;
-import org.nhnnext.domain.repository.InstructorRepository;
 import org.nhnnext.domain.repository.LectureRepository;
 import org.nhnnext.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+//@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RestController
 public class TestController {
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private LectureRepository lectureRepository;
+	
+	@Autowired
+	private CourseRepository courseRepository;
 
-	private final UserRepository userRepository;
-	private final LectureRepository lectureRepository;
-	private final CourseRepository courseRepository;
-	private final InstructorRepository instructorRepository;
     
     @CrossOrigin
-	@GetMapping("/courses")
-	public ArrayList<Instructor> getLectures() {
+	@GetMapping("/courses") //All courses
+	public ArrayList<User> getLectures() {
     	
-    	Instructor backProfessor = instructorRepository.findByNickname("Javajigi");
-    	List<Course> backendLectures = courseRepository.findByInstructor(backProfessor);
-    	backProfessor.setLectures(backendLectures);
+    	User backProfessor = userRepository.findByNickname("Javajigi");    	
+    	User frontProfessor = userRepository.findByNickname("Artist");
     	
-    	Instructor frontProfessor = instructorRepository.findByNickname("Artist");
-    	List<Course> frontendLectures = courseRepository.findByInstructor(frontProfessor);
-    	frontProfessor.setLectures(frontendLectures);
-    	
-    	ArrayList<Instructor> professors = new ArrayList<Instructor>();
+    	ArrayList<User> professors = new ArrayList<User>();
     	professors.add(backProfessor);
     	professors.add(frontProfessor);
+    	
+    	System.out.println("과연");
+    	System.out.println(backProfessor.getCourses());
     	
 		return professors;
 	}
@@ -54,39 +57,40 @@ public class TestController {
 	  	Course e2 = courseRepository.findOne((long) 2);
 	  	Course e3 = courseRepository.findOne((long) 3);
 
-		ArrayList<Course> participateLectures = new ArrayList<Course>();
-		participateLectures.add(e1);
-		participateLectures.add(e2);
-		participateLectures.add(e3);
+		ArrayList<Course> participateCourses = new ArrayList<Course>();
+		participateCourses.add(e1);
+		participateCourses.add(e2);
+		participateCourses.add(e3);
 	
 	   User itsloog = userRepository.findByNickname("itsloog");
-	   itsloog.setLectures(participateLectures);
+	   itsloog.setCourses(participateCourses);
 	   userRepository.save(itsloog);
 	  
-	  return itsloog.getLectures();
+	  return itsloog.getCourses();
   }
-  
-  @CrossOrigin
-  @RequestMapping("/courses/{id}")
-  public List<Course> getCourses(){
-  	
-	  	Course e1 = courseRepository.findOne((long) 1);
-//	  	ArrayList<Course> courseList = new ArrayList<Course>();
-//	  	e1.setCourses(courses);
-	  	Course e2 = courseRepository.findOne((long) 2);
-	  	Course e3 = courseRepository.findOne((long) 3);
-
-		ArrayList<Course> participateLectures = new ArrayList<Course>();
-		participateLectures.add(e1);
-		participateLectures.add(e2);
-		participateLectures.add(e3);
-	
-	   User itsloog = userRepository.findByNickname("itsloog");
-	   itsloog.setLectures(participateLectures);
-	   userRepository.save(itsloog);
-	  
-	  return itsloog.getLectures();
-  }
-    
+//  
+//  @CrossOrigin
+//  @RequestMapping("/courses/{id}")
+//  public ArrayList<Lecture> getCourses(@PathVariable Long id){
+//	  
+//	  	Course course = courseRepository.findOne(id);
+//	  	System.out.println("교수자는?");
+//	  	System.out.println(course);
+//	  	Lecture l1 = new Lecture("test-1"+id, course);
+//	  	Lecture l2 = new Lecture("test-2"+id, course);
+//	  	Lecture l3 = new Lecture("test-3"+id, course);
+//	  	lectureRepository.save(l1);
+//	  	System.out.println("첫번쨰 렉처");
+//	  	System.out.println(l1);
+//	  	lectureRepository.save(l2);
+//	  	lectureRepository.save(l3);
+//	  	courseRepository.save(course);
+//
+////	  	System.out.println(courseRepository.findAll());
+////		ArrayList<Lecture> lectures = lectureRepository.findByCourse(course);
+//	
+//	  return (ArrayList<Lecture>) lectureRepository.findAll();
+//  }
+//    
 }
 

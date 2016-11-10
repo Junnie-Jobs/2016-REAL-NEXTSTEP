@@ -9,11 +9,11 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
-public class IssueComment extends AbstractPersistable<Long> {
+public class SessionComment extends AbstractPersistable<Long> {
 
 	@NotNull
 	private String comment;
 
 	@ManyToOne
-	private Issue issue;
+	private Session session;
 }

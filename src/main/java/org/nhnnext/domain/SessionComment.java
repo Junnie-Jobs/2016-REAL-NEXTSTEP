@@ -1,11 +1,11 @@
 package org.nhnnext.domain;
 
-import lombok.Data;
-import org.springframework.data.jpa.domain.AbstractPersistable;
-
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+import org.springframework.data.jpa.domain.AbstractPersistable;
+
+import lombok.Data;
 
 @Data
 @Entity

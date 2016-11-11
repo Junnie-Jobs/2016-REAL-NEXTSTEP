@@ -36,16 +36,20 @@ public class Course extends AbstractPersistable<Long> {
 	private String description;
 
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-	@JoinTable(name="course_of_instructors", joinColumns = @JoinColumn(name="course_id"), 
-			inverseJoinColumns = @JoinColumn (name = "user_id"))
+	@JoinTable(name="course_of_instructors", 
+				joinColumns = @JoinColumn(name="course_id"), 
+				inverseJoinColumns = @JoinColumn (name = "user_id"))
+	@JsonIgnore
 	private Collection<User> instructors = new ArrayList<>();
 
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-	@JoinTable(name="course_of_participants", joinColumns = @JoinColumn(name="course_id"), 
-			inverseJoinColumns = @JoinColumn (name = "user_id"))
+	@JoinTable(name="course_of_participants", 
+				joinColumns = @JoinColumn(name="course_id"), 
+				inverseJoinColumns = @JoinColumn (name = "user_id"))
+	@JsonIgnore
 	private Collection<User> participants = new ArrayList<>();
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
+	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "course")
 	@OrderColumn
 	@JsonManagedReference
 	private List<Lecture> lectures = new ArrayList<>();
@@ -60,6 +64,7 @@ public class Course extends AbstractPersistable<Long> {
 	
 	public void addInstructor(User user){
 		instructors.add(user);
+		user.addCourse(this);
 	}
 	
 	public void addParticipant(User user){
@@ -74,5 +79,12 @@ public class Course extends AbstractPersistable<Long> {
 		this.state = state;
 		this.addInstructor(user);
 	}
+
+	@Override
+	public String toString() {
+		return "Course [name=" + name + ", state=" + state + ", description=" + description + ", lectures=" + lectures + "]";
+	}
+	
+	
 
 }

@@ -1,0 +1,209 @@
+.view-course {
+	background: #0079BF;	
+}
+.course-list-wrapper {
+/* 	margin-top: 50px; */
+}
+
+.course-header {
+	padding: 10px;
+	height: 50px;
+}
+.course-header span, .course-header span a {
+	vertical-align: middle;
+	margin-right: 10px;
+	margin-left: 5px;
+	color: white;
+}
+.course-header-name {
+	color:white;
+	font-weight: bold;
+	font-size: 18px;
+	vertical-align: middle;
+}
+.course-header-professor {
+	font-size: 14px;
+}
+.course-header .course-header-status {
+	
+}
+.course-header-btn-show-menu {
+	float: right;
+	height: 100%;
+	line-height: 30px;
+	padding: 0px 5px;
+	border-radius: 2px;
+}
+.course-header-btn-show-menu:hover {
+	background: rgba(0, 0, 0, 0.2);
+}
+.course-header-btn-show-menu span {
+	margin: 0px 3px;
+}
+.course-header-btn-text {
+	font-size: 12px;
+	font-weight: 600;
+	text-decoration: underline;
+}
+.course-lectrues {
+    white-space: nowrap;
+    margin-bottom: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: absolute;	
+	top: 100px;
+	left:0;
+	right: 0;
+    bottom:0;
+}
+
+.lecture-card {
+	position: relative;
+	display: inline-block;
+	padding: 0px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-right: 5px;
+	vertical-align: top;
+}
+
+.lecture-card.dragmove .lecture-card-content {
+	transform: rotate(10deg);
+}
+.lecture-card.placeholder {
+    background-color: rgba(0,0,0,.2);
+    border-color: transparent;
+    box-shadow: none;
+    border-radius: 3px;
+}
+.lecture-card.placeholder .lecture-card-content {
+	position: fixed;
+	visibility: hidden;
+}
+.lecture-card .lecture-card-content {
+
+	padding: 10px;
+	background: #E2E4E6;
+	border-radius: 3px;
+	width: 300px;
+}
+.lecture-card .add-lecture-card-content {
+	padding: 10px;
+	background: #0068AD;
+	border-radius: 3px;
+	width: 300px;	
+}
+.lecture-card .add-lecture-card-content:hover {
+	background: #00538A;
+}
+.lecture-card h2 {
+	margin:0;
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.lecture-card .lecture-card-content a {
+	color: black;
+}
+
+.lecture-card-sessions li {
+	background: #fff;
+	border-radius: 3px;
+	padding: 5px 10px;
+	margin-bottom:  5px;
+}
+.lecture-card-sessions li a {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.lecture-add-controls input {
+	margin-bottom: 10px;
+}
+
+.lecture-add-controls .btn-success {
+	margin-right: 10px;
+}
+.lecture-card-add-session {
+	color: #777;
+	margin: 1px 0px 0px;
+	padding: 3px 5px;
+	border-radius: 2px;
+}
+.lecture-card-add-session:hover {
+	background: rgba(0, 0, 0, 0.1);
+	color: #333;
+}
+
+
+
+.course-participants {
+	position: fixed;
+	top: 50px;
+	right: 0;
+	bottom:0;
+	background-color: #EDEFF0;
+    -webkit-transition-property: -webkit-transform,width;
+    transition-property: transform,width;
+    -webkit-transition-duration: .1s;
+    transition-duration: .1s;
+    -webkit-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+    -webkit-transform: translateX(300px);
+    transform: translateX(300px);
+    width: 300px;
+    z-index: 5;
+    padding: 15px;
+}
+
+.course-participants.show-menu {
+	box-shadow: 0 0 6px rgba(0,0,0,.4);
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+.course-participants h3 {
+	position: relative;
+	text-align: center;
+	border-bottom: 1px solid #ccc;
+	margin: 0;
+	padding-bottom: 10px;
+	font-size: 20px;
+	font-weight: 900;
+	
+}
+.course-participants-close {
+	position: absolute;
+	font-weight: 600;
+	font-size: 18px;
+	right: 0;
+	top: 0px;
+}
+.course-participants-close, .course-participants-close:active, .course-participants-close:focus {
+	color: #aaa;
+}
+.course-participants-close:hover {
+	color: black;
+}
+.course-participants ul {
+}
+.course-participants li {
+	margin: 10px 0px;
+}
+.course-participant-thumb {
+	width: 30px;
+	border-radius: 3px;
+}
+.course-participant-thumb, .course-participant-name,.course-participant-message {
+	height: 30px;
+	line-height: 30px;
+	vertical-align: middle;
+	display: inline-block;
+}
+.course-participant-name {
+	margin: 0px 10px;
+	font-weight: bold;
+}
+.course-participant-message .btn {
+	margin: 0px 5px;
+	padding: 3px 10px;
+}

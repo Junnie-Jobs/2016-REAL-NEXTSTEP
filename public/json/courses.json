@@ -1,0 +1,53 @@
+[
+	{
+ "id":1,
+ "name": "교수 이름",
+ "courses": [
+      {
+
+        "id": 1,
+        "name": "HCI",
+        "status": "UPCOMMING"
+       } ,
+      {
+
+        "id": 2,
+        "name": "HCI",
+        "status": "UPCOMMING"
+       } ,
+      {
+
+        "id": 3,
+        "name": "HCI",
+        "status": "UPCOMMING"
+       } 
+   ]
+ },
+ 
+ {
+ "id":2,
+ "name": "교수 이름2",
+ "courses": [
+      {
+
+        "id": 1,
+        "name": "3HCI",
+        "status": "UPCOMMING"
+       } 
+   ]
+ },
+ 
+ {
+ "id":3,
+ "name": "교수 이름3",
+ "courses": [
+      {
+
+        "id": 1,
+        "name": "HC2I",
+        "status": "UPCOMMING"
+       } 
+   ]
+ }
+	
+]

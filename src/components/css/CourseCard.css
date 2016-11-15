@@ -1,0 +1,37 @@
+.course-card {
+	position: relative;
+}
+.course-card a {
+	background: #0064A7;
+	color: white;
+	display: block;
+	border-radius: 3px;
+	padding: 10px;
+	height: 80px;
+}
+.course-card a:hover {
+	background: #005994;
+	color: white;
+	text-decoration: none;
+}
+.course-card p {
+	margin-bottom: 5px;
+}
+.course-card .course-title-name {
+	font-weight: bold;
+}
+.course-card .course-professor-name {
+	font-size: 13px;
+	color: #ddd;
+}
+
+.course-card.course-card-more a{
+	background: #eee;
+	color: #333;
+	font-weight: bold;
+	text-align: center;
+	line-height: 60px;
+}
+.course-card.course-card-more a:hover{
+	background: #ddd;
+}

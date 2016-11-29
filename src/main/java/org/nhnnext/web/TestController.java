@@ -24,7 +24,7 @@ public class TestController {
 	private final SecurityUserRepository securityUserRepository;
 
 	 @RequestMapping("/userp")
-	  public Principal user(Principal principal) {
+	  public Principal user(@AuthenticationPrincipal Principal principal) {
 	    return principal;
 	  }
 	 

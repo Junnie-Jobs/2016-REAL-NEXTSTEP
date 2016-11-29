@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   profiles:
-    active: server
+    active: production
   h2:
     console:
       enabled: true

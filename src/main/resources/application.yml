@@ -1,0 +1,7 @@
+#security:
+#  oauth2:
+##    sso:
+##      login-path: /login
+spring:
+  profiles:
+    active: production

@@ -9,5 +9,5 @@ public interface LectureExcerpt {
 
 	String getTitle();
 
-	List<Lesson> getIssues();
+	List<Lesson> getSessions();
 }

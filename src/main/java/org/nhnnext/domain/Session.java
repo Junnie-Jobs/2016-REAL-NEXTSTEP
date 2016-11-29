@@ -1,6 +1,8 @@
 package org.nhnnext.domain;
 
 import lombok.Data;
+
+import org.hibernate.validator.constraints.NotEmpty;
 import org.nhnnext.domain.auditing.AbstractPersistable;
 
 import javax.persistence.*;
@@ -15,29 +17,19 @@ import java.util.List;
 @Entity
 public class Session extends AbstractPersistable<Long> {
 
-	private String name;
+	@NotEmpty
+	private String title;
 
-	private State state;
-
-	public enum State {
-		UPCOMING,
-		IN_SESSION
-	}
+	@NotEmpty
+	private String content;
 
 	@ManyToOne(optional = false)
-	private Course course;
+	private Lecture lecture; // should be final
 
-	@ManyToMany
-	private Collection<User> participants;
+	private Access access;
 
-	@NotNull
-	private LocalDateTime startDate;
-
-	@NotNull
-	private LocalDateTime endDate;
-
-	@OrderColumn
-	@Column(unique = true)
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	private final List<Lecture> lectures = new ArrayList<>();
+	public enum Access {
+		PUBLIC,
+		PRIVATE
+	}
 }

@@ -1,11 +1,15 @@
 package org.nhnnext.web;
 
 import lombok.RequiredArgsConstructor;
+
+import java.security.Principal;
+
 import org.nhnnext.domain.*;
 import org.nhnnext.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
@@ -19,6 +23,11 @@ public class TestController {
 
 	private final SecurityUserRepository securityUserRepository;
 
+	 @RequestMapping("/userp")
+	  public Principal user(Principal principal) {
+	    return principal;
+	  }
+	 
 //	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/user")
 	public Object getAuthenticatedUser(@AuthenticationPrincipal Object principal) {

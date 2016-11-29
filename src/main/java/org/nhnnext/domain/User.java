@@ -14,4 +14,8 @@ public class User extends AbstractPersistable<Long> {
 	private String name;
 
 	private String avatarUrl;
+	
+//	private String email;
+//	
+//	private String accessToken;
 }

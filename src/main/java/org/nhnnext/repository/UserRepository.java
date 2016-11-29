@@ -7,4 +7,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource(excerptProjection = UserExcerpt.class)
 public interface UserRepository extends CrudRepository<User, Long> {
+	
+//	User findByAccessToken(String accessToken);
+//	User findByEmail(String email);
 }

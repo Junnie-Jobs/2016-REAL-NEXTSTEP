@@ -30,7 +30,7 @@ public class TestController {
 	 
 //	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/user")
-	public Object getAuthenticatedUser(@AuthenticationPrincipal Object principal) {
+	public Object getAuthenticatedUser(@AuthenticationPrincipal Principal principal) {
 		return principal;
 	}
 

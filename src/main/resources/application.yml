@@ -5,28 +5,3 @@
 spring:
   profiles:
     active: production
-  h2:
-    console:
-      enabled: true
-      settings:
-        web-allow-others: true
-  data:
-    rest:
-      base-path: /api
-      
-  datasource:
-    url: jdbc:h2:mem:nextstep;MODE=Oracle;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    driverClassName: org.h2.Driver
-    username: sa
-    password: nextstep
-    
-  jpa:
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-    database-platform: org.hibernate.dialect.H2Dialect
-
-  resources:
-    chain:
-      enabled: true

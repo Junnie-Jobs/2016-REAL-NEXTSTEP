@@ -72,30 +72,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return registration;
 	}
 
-	 @Bean
-	 @ConfigurationProperties("github.client")
-	 public AuthorizationCodeResourceDetails github() {
-	 return new AuthorizationCodeResourceDetails();
-	 }
-	
-	 @Primary
-	 @Bean
-	 @ConfigurationProperties("github.resource")
-	 public ResourceServerProperties githubResource() {
-	 return new ResourceServerProperties();
-	 }
-	
+	@Bean
+	@ConfigurationProperties("github.client")
+	public AuthorizationCodeResourceDetails github() {
+		return new AuthorizationCodeResourceDetails();
+	}
+
+	@Primary
+	@Bean
+	@ConfigurationProperties("github.resource")
+	public ResourceServerProperties githubResource() {
+		return new ResourceServerProperties();
+	}
+
 	private Filter ssoFilter() {
 
-		 OAuth2ClientAuthenticationProcessingFilter githubFilter = new
-		 OAuth2ClientAuthenticationProcessingFilter("/login/github");
-		 OAuth2RestTemplate githubTemplate = new OAuth2RestTemplate(github(),
-		 oauth2ClientContext);
-		 githubFilter.setRestTemplate(githubTemplate);
-		 githubFilter.setTokenServices(new
-		 UserInfoTokenServices(githubResource().getUserInfoUri(),
-		 github().getClientId()));
-		 return githubFilter;
+		OAuth2ClientAuthenticationProcessingFilter githubFilter = new OAuth2ClientAuthenticationProcessingFilter(
+				"/login/github");
+		OAuth2RestTemplate githubTemplate = new OAuth2RestTemplate(github(), oauth2ClientContext);
+		githubFilter.setRestTemplate(githubTemplate);
+		githubFilter
+				.setTokenServices(new UserInfoTokenServices(githubResource().getUserInfoUri(), github().getClientId()));
+		return githubFilter;
 
 	}
 

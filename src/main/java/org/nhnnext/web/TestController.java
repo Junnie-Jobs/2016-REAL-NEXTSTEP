@@ -24,7 +24,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,74 +34,80 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RestController
 public class TestController {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(TestController.class);
-	
+
 	private final UserRepository userRepository;
 	private final LectureRepository lectureRepository;
 	private final CourseRepository courseRepository;
 	private final LessonRepository lessonRepository;
 	private final SecurityUserRepository securityUserRepository;
 
-	
 	@PreAuthorize("isAuthenticated()")
-	@CrossOrigin
 	@GetMapping("/api/user")
 	public Object userInfo(@AuthenticationPrincipal Principal principal) {
 		System.out.println(principal);
 		return principal;
 	}
 
-	public Map requestUser(String accesstoken){
+	public Map requestUser(String accesstoken) {
 		System.out.println(accesstoken);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-		headers.set("Authorization", "token "+ accesstoken);	
+		headers.set("Authorization", "token " + accesstoken);
 		headers.set("Accept", "application/json");
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<MultiValueMap<String, String>>(parameters, headers);
+		HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<MultiValueMap<String, String>>(
+				parameters, headers);
 		RestTemplate restTemplate = new RestTemplate();
 		return restTemplate.exchange("https://api.github.com/user", HttpMethod.GET, requestEntity, Map.class).getBody();
 	}
-	
+
 	private TestingAuthenticationProvider authenticationProvider = new TestingAuthenticationProvider();;
-	
-//	@PostMapping("/login")
-	@CrossOrigin
+
+	// @PostMapping("/login")
 	@GetMapping("/api/login")
 	public Object create(@RequestParam String code, @RequestParam String state) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-		//headers.set("Authorization", "Bearer " + accessToken);	
+		// headers.set("Authorization", "Bearer " + accessToken);
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add("client_id", "47dfd22871c67b6bbf77");
 		parameters.add("client_secret", "0b5ac3ede0e5dc3f0bdd6e2aaa383a17a62cfa39");
 		parameters.add("code", code);
 		parameters.add("state", state);
-		HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<MultiValueMap<String, String>>(parameters, headers);
+		HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<MultiValueMap<String, String>>(
+				parameters, headers);
 		RestTemplate restTemplate = new RestTemplate();
-		//return restTemplate.exchange("https://github.com/login/ouath/access_token", HttpMethod.POST, requestEntity, Map.class).getBody();
+		// return
+		// restTemplate.exchange("https://github.com/login/ouath/access_token",
+		// HttpMethod.POST, requestEntity, Map.class).getBody();
 
-		Map resp = restTemplate.exchange("https://github.com/login/oauth/access_token", HttpMethod.POST, requestEntity, Map.class).getBody();
-		if(resp.containsKey("error")) {
+		Map resp = restTemplate
+				.exchange("https://github.com/login/oauth/access_token", HttpMethod.POST, requestEntity, Map.class)
+				.getBody();
+		if (resp.containsKey("error")) {
 			return resp;
 		}
-		
-		Map userData = this.requestUser((String)resp.get("access_token"));
 
-//		Map userData = new HashMap<>();
-//		userData.put("test", "test");
-		
-//		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken("test", "test");
-//		TestingAuthenticationToken token = new TestingAuthenticationToken(userData, "test");
-//	    Authentication authentication = this.authenticationProvider.authenticate(token);
+		Map userData = this.requestUser((String) resp.get("access_token"));
+
+		// Map userData = new HashMap<>();
+		// userData.put("test", "test");
+
+		// UsernamePasswordAuthenticationToken token = new
+		// UsernamePasswordAuthenticationToken("test", "test");
+		// TestingAuthenticationToken token = new
+		// TestingAuthenticationToken(userData, "test");
+		// Authentication authentication =
+		// this.authenticationProvider.authenticate(token);
 		Authentication authentication = new UsernamePasswordAuthenticationToken(userData, "secret", new ArrayList<>());
-	    System.out.println(authentication);
-	    SecurityContextHolder.getContext().setAuthentication(authentication);
+		System.out.println(authentication);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		return userData;
 	}
-	@CrossOrigin
+
 	@GetMapping("/api/test")
 	public String createTestData() {
 		SecurityUser user = new SecurityUser("testuser", "password");

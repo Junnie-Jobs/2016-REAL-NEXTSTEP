@@ -72,8 +72,8 @@ public class TestController {
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 		// headers.set("Authorization", "Bearer " + accessToken);
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		parameters.add("client_id", "47dfd22871c67b6bbf77");
-		parameters.add("client_secret", "0b5ac3ede0e5dc3f0bdd6e2aaa383a17a62cfa39");
+		parameters.add("client_id", "e707ca2f9a1556499b5a");
+		parameters.add("client_secret", "b6489531c45fc304fea057a8421a8e2c2ba5319f");
 		parameters.add("code", code);
 		parameters.add("state", state);
 		HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<MultiValueMap<String, String>>(

@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import org.nhnnext.domain.Course;
 import org.nhnnext.domain.Lecture;
+import org.nhnnext.domain.Lesson;
 import org.nhnnext.domain.SecurityUser;
 import org.nhnnext.domain.Session;
 import org.nhnnext.domain.User;
 import org.nhnnext.repository.CourseRepository;
 import org.nhnnext.repository.LectureRepository;
+import org.nhnnext.repository.LessonRepository;
 import org.nhnnext.repository.MySessionRepository;
 import org.nhnnext.repository.SecurityUserRepository;
 import org.nhnnext.repository.UserRepository;
@@ -26,10 +28,9 @@ public class Application {
 	
 	@Bean
 	public CommandLineRunner demo(LectureRepository lectureRepository, UserRepository userRepository,
-			CourseRepository courseRepository, MySessionRepository sessionRepository, SecurityUserRepository securityUserRepository) {
+			CourseRepository courseRepository, MySessionRepository sessionRepository, SecurityUserRepository securityUserRepository, LessonRepository lessonRepository) {
 		return (args) -> {
 
-			
 			User student1 = new User();
 			student1.setName("Choi Yeonkyu");
 			student1.setAvatarUrl("https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/14494785_1303032459755018_522118762631698008_n.jpg?oh=3fa832407d4254f7e97fcba1b70d3f40&oe=58AD5DA2");
@@ -81,33 +82,31 @@ public class Application {
 			course.getLectures().add(lecture2);
 			course.getLectures().add(lecture3);
 			courseRepository.save(course);
-			
-			lecture1.setSessions(new ArrayList<Session>());
-			
-			Session session1 = new Session();
-			session1.setTitle("학습목표 1");
-			session1.setContent("첫 번째 내용");
-			session1.setLecture(lecture1);
-			lecture1.getSessions().add(session1);
+		
+			lecture1.setLessons(new ArrayList<Lesson>());			
+			Lesson lesson1 = new Lesson();
+			lesson1.setTitle("학습목표 1");
+			lesson1.setContent("첫 번째 내용");
+			lesson1.setLecture(lecture1);
+			lecture1.getLessons().add(lesson1);
 			lectureRepository.save(lecture1);
-			sessionRepository.save(session1);
+			lessonRepository.save(lesson1);
 
-			
-			Session session2 = new Session();
-			session2.setTitle("학습목표 2");
-			session2.setContent("두 번째 내용");
-			session2.setLecture(lecture1);
-			lecture1.getSessions().add(session2);
+			Lesson lesson2 = new Lesson();
+			lesson2.setTitle("학습목표 2");
+			lesson2.setContent("두 번째 내용");
+			lesson2.setLecture(lecture1);
+			lecture1.getLessons().add(lesson2);
 			lectureRepository.save(lecture1);
-			sessionRepository.save(session2);
+			lessonRepository.save(lesson2);
 			
-			Session session3 = new Session();
-			session3.setTitle("학습목표 3");
-			session3.setContent("세 번째 내용");
-			session3.setLecture(lecture1);
-			lecture1.getSessions().add(session3);
+			Lesson lesson3 = new Lesson();
+			lesson3.setTitle("학습목표 3");
+			lesson3.setContent("세 번째 내용");
+			lesson3.setLecture(lecture1);
+			lecture1.getLessons().add(lesson3);
 			lectureRepository.save(lecture1);
-			sessionRepository.save(session3);
+			lessonRepository.save(lesson3);
 						
 			Course course2 = new Course();
 			course2.setName("jwp-adv");
@@ -118,7 +117,7 @@ public class Application {
 			course2.getParticipants().add(student2);
 			course2.getParticipants().add(student3);
 			courseRepository.save(course2);
-			
+					
 		};
 	
 	

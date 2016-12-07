@@ -2,11 +2,11 @@ package org.nhnnext;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+
 import org.nhnnext.domain.Course;
 import org.nhnnext.domain.Lecture;
 import org.nhnnext.domain.Lesson;
 import org.nhnnext.domain.SecurityUser;
-import org.nhnnext.domain.Session;
 import org.nhnnext.domain.User;
 import org.nhnnext.repository.CourseRepository;
 import org.nhnnext.repository.LectureRepository;

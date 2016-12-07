@@ -1,17 +1,18 @@
 package org.nhnnext.domain;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
-
-import org.nhnnext.domain.auditing.AbstractPersistable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
-import java.util.List;
+
+import org.nhnnext.domain.auditing.AbstractPersistable;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Data
 @ToString(exclude="course")
@@ -27,5 +28,5 @@ public class Lecture extends AbstractPersistable<Long> {
 
 	@OneToMany(mappedBy = "lecture", cascade = CascadeType.MERGE)
 //	@OrderColumn(name = "course_order")
-	private List<Session> sessions;
+	private List<Lesson> lessons;
 }

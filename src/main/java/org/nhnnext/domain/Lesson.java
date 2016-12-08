@@ -7,13 +7,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 @Data
 @Entity
 @ToString(exclude="lecture")
-@EqualsAndHashCode(of="id")
 public class Lesson extends AbstractPersistable<Long> {
 
 	@NotEmpty

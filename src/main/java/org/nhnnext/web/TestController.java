@@ -46,12 +46,16 @@ public class TestController {
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/api/user")
 	public Object userInfo(@AuthenticationPrincipal Principal principal) {
+		
+		if(principal == null){			
+		}
+		
 		System.out.println(principal);
 		return principal;
 	}
 
 	public Map requestUser(String accesstoken) {
-		System.out.println(accesstoken);
+//		System.out.println(accesstoken);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 		headers.set("Authorization", "token " + accesstoken);

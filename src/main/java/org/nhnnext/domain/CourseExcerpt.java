@@ -12,5 +12,5 @@ public interface CourseExcerpt {
 
 	Collection<User> getInstructors();
 
-//	List<Lecture> getLectures();
+	List<Lecture> getLectures();
 }

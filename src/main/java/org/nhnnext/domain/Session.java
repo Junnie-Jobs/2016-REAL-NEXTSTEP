@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -34,6 +35,9 @@ public class Session extends AbstractPersistable<Long> {
 	private String name;
 
 	private State state;
+	
+	@ManyToOne(optional = false)
+	private Course course;
 
 	@Lob
 	private String description;
@@ -44,7 +48,7 @@ public class Session extends AbstractPersistable<Long> {
 	@ManyToMany
 	private Collection<User> participants;
 
-	@OneToMany(mappedBy = "course")
+	@OneToMany(mappedBy = "session")
 //	@OrderColumn(name = "lecture_order")
 	private List<Lecture> lectures;
 	

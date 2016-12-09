@@ -22,6 +22,9 @@ public class Lecture extends AbstractPersistable<Long> {
 
 	@ManyToOne(optional = false)
 	private Course course;
+	
+	@ManyToOne(optional = false)
+	private Session session;
 
 	@OneToMany(mappedBy = "lecture", cascade = CascadeType.MERGE)
 //	@OrderColumn(name = "course_order")

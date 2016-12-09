@@ -66,15 +66,15 @@ public class Application {
 			course.setInstructor(manager);
 			courseRepository.save(course);
 			
-//			Session session1 = new Session();
-//			session1.setCourse(course);
-//			session1.setName("jwp-basic-2016-1");
-//			session1.setInstructors(course.getInstructors());
-//			session1.setDescription(course.getDescription());
-//			session1.setParticipants(course.getParticipants());
-//			sessionRepository.save(session1);
-//			course.getSessions().add(session1);
-//			courseRepository.save(course);
+			Session session1 = new Session();
+			session1.setCourse(course);
+			session1.setName("jwp-basic-2016-1");
+			session1.setInstructors(course.getInstructors());
+			session1.setDescription(course.getDescription());
+			session1.setParticipants(course.getParticipants());
+			sessionRepository.save(session1);
+			course.getSessions().add(session1);
+			courseRepository.save(course);
 		
 			course.setLectures(new ArrayList<>());	
 			Lecture lecture1 = new Lecture();
@@ -93,17 +93,17 @@ public class Application {
 			lecture3.setPos(3);
 			lectureRepository.save(lecture3);
 			
-//			session1.setLectures(course.getLectures());
-//			sessionRepository.save(session1);
-//			
-//			Lecture lecture4 = new Lecture();
-//			lecture4.setTitle("this for session1");
-//			lecture4.setSession(session1);
-//			lecture4.setPos(4);
-//			lectureRepository.save(lecture4);
+			session1.setLectures(course.getLectures());
+			sessionRepository.save(session1);
 			
-//			session1.getLectures().add(lecture4);
-//			sessionRepository.save(session1);
+			Lecture lecture4 = new Lecture();
+			lecture4.setTitle("this for session1");
+			lecture4.setSession(session1);
+			lecture4.setPos(4);
+			lectureRepository.save(lecture4);
+			
+			session1.getLectures().add(lecture4);
+			sessionRepository.save(session1);
 			
 			course.getLectures().add(lecture1);
 			course.getLectures().add(lecture2);

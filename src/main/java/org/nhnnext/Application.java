@@ -89,8 +89,8 @@ public class Application {
 			session1.setDescription(course.getDescription());
 			session1.setLectures(course.getLectures());
 			session1.setParticipants(course.getParticipants());
-			course.getSessions().add(session1);
 			sessionRepository.save(session1);
+			course.getSessions().add(session1);
 			
 			Lecture lecture4 = new Lecture();
 			lecture4.setTitle("this for session1");
@@ -128,8 +128,7 @@ public class Application {
 			lecture1.getLessons().add(lesson3);
 			lectureRepository.save(lecture1);
 			lessonRepository.save(lesson3);
-									
-		
+											
 			
 			Course course2 = new Course();
 			course2.setName("jwp-adv");

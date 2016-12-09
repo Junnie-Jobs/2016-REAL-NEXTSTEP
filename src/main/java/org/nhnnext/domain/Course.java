@@ -51,7 +51,10 @@ public class Course extends AbstractPersistable<Long> {
 	@OneToMany(mappedBy = "course")
 //	@OrderColumn(name = "lecture_order")
 	private List<Lecture> lectures;
-
+	
+	@OneToMany(mappedBy = "course")
+	private List<Session> sessions;
+	
 	void swapLecture(int i, int j) {
 		Collections.swap(lectures, i, j);
 	}

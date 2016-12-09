@@ -7,6 +7,7 @@ import org.nhnnext.domain.Course;
 import org.nhnnext.domain.Lecture;
 import org.nhnnext.domain.Lesson;
 import org.nhnnext.domain.SecurityUser;
+import org.nhnnext.domain.Session;
 import org.nhnnext.domain.User;
 import org.nhnnext.repository.CourseRepository;
 import org.nhnnext.repository.LectureRepository;
@@ -69,14 +70,17 @@ public class Application {
 			Lecture lecture1 = new Lecture();
 			lecture1.setTitle("Orientation");
 			lecture1.setCourse(course);
+			lecture1.setPos(1);
 			lectureRepository.save(lecture1);
 			Lecture lecture2 = new Lecture();
 			lecture2.setTitle("Frist Week");
 			lecture2.setCourse(course);
+			lecture2.setPos(2);
 			lectureRepository.save(lecture2);
 			Lecture lecture3 = new Lecture();
 			lecture3.setTitle("Second Week");
 			lecture3.setCourse(course);
+			lecture3.setPos(3);
 			lectureRepository.save(lecture3);
 			course.getLectures().add(lecture1);
 			course.getLectures().add(lecture2);
@@ -107,7 +111,15 @@ public class Application {
 			lecture1.getLessons().add(lesson3);
 			lectureRepository.save(lecture1);
 			lessonRepository.save(lesson3);
-						
+									
+			Session session1 = new Session();
+			session1.setName("jwp-basic-2016-1");
+			session1.setInstructors(course.getInstructors());
+			session1.setDescription(course.getDescription());
+			session1.setLectures(course.getLectures());
+			session1.setParticipants(course.getParticipants());
+			course.getSessions().add(session1);
+			
 			Course course2 = new Course();
 			course2.setName("jwp-adv");
 			course2.setInstructors(new HashSet<>());

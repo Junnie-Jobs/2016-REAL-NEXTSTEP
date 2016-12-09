@@ -26,4 +26,7 @@ public class Lecture extends AbstractPersistable<Long> {
 	@OneToMany(mappedBy = "lecture", cascade = CascadeType.MERGE)
 //	@OrderColumn(name = "course_order")
 	private List<Lesson> lessons;
+	
+	private int pos;
+	
 }

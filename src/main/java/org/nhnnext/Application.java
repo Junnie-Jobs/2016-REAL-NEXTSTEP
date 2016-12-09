@@ -90,6 +90,7 @@ public class Application {
 			session1.setLectures(course.getLectures());
 			session1.setParticipants(course.getParticipants());
 			course.getSessions().add(session1);
+			sessionRepository.save(session1);
 			
 			Lecture lecture4 = new Lecture();
 			lecture4.setTitle("this for session1");

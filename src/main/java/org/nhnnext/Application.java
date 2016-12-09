@@ -65,6 +65,17 @@ public class Application {
 			course.getParticipants().add(student3);
 			course.setInstructor(manager);
 			courseRepository.save(course);
+			
+			Session session1 = new Session();
+			session1.setCourse(course);
+			session1.setName("jwp-basic-2016-1");
+			session1.setInstructors(course.getInstructors());
+			session1.setDescription(course.getDescription());
+			session1.setLectures(course.getLectures());
+			session1.setParticipants(course.getParticipants());
+			sessionRepository.save(session1);
+			course.getSessions().add(session1);
+			courseRepository.save(course);
 		
 			course.setLectures(new ArrayList<>());	
 			Lecture lecture1 = new Lecture();
@@ -83,14 +94,7 @@ public class Application {
 			lecture3.setPos(3);
 			lectureRepository.save(lecture3);
 			
-			Session session1 = new Session();
-			session1.setName("jwp-basic-2016-1");
-			session1.setInstructors(course.getInstructors());
-			session1.setDescription(course.getDescription());
-			session1.setLectures(course.getLectures());
-			session1.setParticipants(course.getParticipants());
-			sessionRepository.save(session1);
-			course.getSessions().add(session1);
+
 			
 			Lecture lecture4 = new Lecture();
 			lecture4.setTitle("this for session1");

@@ -80,6 +80,14 @@ public class Application {
 			session1.setCourse(course);
 			sessionRepository.save(session1);
 			
+			CourseSession session2 = new CourseSession("2016-02-JWP");
+			session2.setCourse(course);
+			sessionRepository.save(session2);
+			
+			CourseSession session3 = new CourseSession("2016-03-JWP");
+			session3.setCourse(course);
+			sessionRepository.save(session3);
+			
 			
 //			Session session1 = new Session();
 //			session1.setCourse(course);

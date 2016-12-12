@@ -5,8 +5,9 @@ import org.nhnnext.nextstep.lecture.LectureRepository;
 import org.nhnnext.nextstep.lesson.LessonRepository;
 import org.nhnnext.nextstep.session.CourseSession;
 import org.nhnnext.nextstep.session.MasterSession;
+import org.nhnnext.nextstep.session.MasterSessionRepository;
 import org.nhnnext.nextstep.session.Session;
-import org.nhnnext.nextstep.session.SessionRepository;
+import org.nhnnext.nextstep.session.CourseSessionRepository;
 import org.nhnnext.nextstep.user.Instructor;
 import org.nhnnext.nextstep.user.User;
 import org.nhnnext.nextstep.user.UserRepository;
@@ -31,7 +32,7 @@ public class Application {
 	
 	@Bean
 	public CommandLineRunner demo(LectureRepository lectureRepository, UserRepository userRepository,
-			CourseRepository courseRepository, SessionRepository sessionRepository, LessonRepository lessonRepository) {
+			CourseRepository courseRepository, CourseSessionRepository courseSessionRepository, MasterSessionRepository masterSessionRepository, LessonRepository lessonRepository) {
 		return (args) -> {
 
 			Field usernameField = ReflectionUtils.findField(User.class, "username");
@@ -74,19 +75,19 @@ public class Application {
 			courseRepository.save(course);
 		
 			masterSession.setCourse(course);
-			sessionRepository.save(masterSession);
-
+			masterSessionRepository.save(masterSession);
+			
 			CourseSession session1 = new CourseSession("2016-01-JWP");
 			session1.setCourse(course);
-			sessionRepository.save(session1);
-			
+			courseSessionRepository.save(session1);
+//			
 			CourseSession session2 = new CourseSession("2016-02-JWP");
 			session2.setCourse(course);
-			sessionRepository.save(session2);
+			courseSessionRepository.save(session2);
 			
 			CourseSession session3 = new CourseSession("2016-03-JWP");
 			session3.setCourse(course);
-			sessionRepository.save(session3);
+			courseSessionRepository.save(session3);
 
 //			Session session1 = new Session();
 //			session1.setCourse(course);

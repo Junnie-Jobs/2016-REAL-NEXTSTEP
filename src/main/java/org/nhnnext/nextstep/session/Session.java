@@ -11,10 +11,11 @@ import javax.persistence.*;
 @NoArgsConstructor(force = true)
 @Data
 @MappedSuperclass
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Session extends AbstractEntity {
 
-    @ManyToOne //(fetch = FetchType.EAGER) //(cascade = CascadeType.PERSIST)//(optional = false)
+
+	@ManyToOne //(fetch = FetchType.EAGER) //(cascade = CascadeType.PERSIST)//(optional = false)
 //    @Cascade(CascadeType.ALL)
 //    @JoinColumn(name="COURSE_ID")
     private Course course;

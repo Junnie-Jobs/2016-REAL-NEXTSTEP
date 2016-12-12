@@ -3,6 +3,6 @@ package org.nhnnext.nextstep.session;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@RepositoryRestResource(excerptProjection = SessionExcerpt.class)
-public interface SessionRepository extends CrudRepository<Session, Long> {
+@RepositoryRestResource(excerptProjection = CourseSessionExcerpt.class)
+public interface CourseSessionRepository extends CrudRepository<CourseSession, Long> {
 }

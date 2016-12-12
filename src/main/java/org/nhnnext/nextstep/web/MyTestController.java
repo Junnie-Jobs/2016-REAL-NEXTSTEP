@@ -1,7 +1,7 @@
 package org.nhnnext.nextstep.web;
 
 import org.nhnnext.nextstep.course.CourseRepository;
-import org.nhnnext.nextstep.session.SessionRepository;
+import org.nhnnext.nextstep.session.CourseSessionRepository;
 import org.nhnnext.nextstep.user.UserRepository;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,7 +13,7 @@ public class MyTestController {
 
 	private final UserRepository userRepository;
 	private final CourseRepository courseRepository;
-	private final SessionRepository sessionRepository;
+	private final CourseSessionRepository sessionRepository;
 
 //	@GetMapping("/test")
 //    public String test() {

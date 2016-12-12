@@ -42,6 +42,7 @@ public class Application {
 			ReflectionUtils.setField(usernameField, student1, "dayBrush");
 			student1.setName("Choi Yeonkyu");
 			student1.setAvatarUrl("https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/14494785_1303032459755018_522118762631698008_n.jpg?oh=3fa832407d4254f7e97fcba1b70d3f40&oe=58AD5DA2");
+			student1.setEmail("dayBrush@naver.com");
 			userRepository.save(student1);
 			
 			User student2 = new User();
@@ -50,6 +51,7 @@ public class Application {
 			ReflectionUtils.setField(student2UsernameField, student2, "junniejobs");
 			student2.setName("Lim Dongjun");
 			student2.setAvatarUrl("https://avatars2.githubusercontent.com/u/3433096?v=3&s=460");
+			student2.setEmail("dj0999@naver.com");
 			userRepository.save(student2);
 //			
 			User student3 = new User();
@@ -58,6 +60,7 @@ public class Application {
 			ReflectionUtils.setField(student3UsernameField, student3, "Byeol");
 			student3.setName("Seo Jaewon");
 			student3.setAvatarUrl("https://scontent.xx.fbcdn.net/v/t1.0-9/230403_368531479891429_635986668_n.jpg?oh=a42efa9e657826e57a96db008960b817&oe=58C68AA9");
+			student3.setEmail("Byeol@naver.com");
 			userRepository.save(student3);
 			
 			Instructor professor1 = new Instructor();
@@ -66,6 +69,7 @@ public class Application {
 			ReflectionUtils.setField(professorUsernameField, professor1, "javajigi");
 			professor1.setName("jaesung");
 			professor1.setAvatarUrl("https://avatars2.githubusercontent.com/u/520500?v=3&s=400");
+			professor1.setEmail("javajigi@naver.com");
 			userRepository.save(professor1);
 			
 			MasterSession masterSession = new MasterSession("JWP-master");

@@ -23,11 +23,11 @@ public class User extends AbstractEntity implements OAuth2User {
     private final String username;
 
     @NotEmpty
-    private String name;
+    private String name; //real name
 
     @Email
     private String email;
 
     @URL
     private String avatarUrl;
-}
+    }

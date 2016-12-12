@@ -39,6 +39,6 @@ public class MasterSession extends AbstractEntity {
 	
 	@OneToMany(mappedBy = "masterSession")
 //	@OrderColumn(name = "lecture_order")
-	private List<Lecture> masterSessionLectures;
+	private List<Lecture> lectures;
 
 }

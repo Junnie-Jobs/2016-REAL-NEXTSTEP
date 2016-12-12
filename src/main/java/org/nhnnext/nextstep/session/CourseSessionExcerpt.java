@@ -15,7 +15,7 @@ public interface CourseSessionExcerpt {
 	String getName();
 	LocalDateTime getStartDate();
 	LocalDateTime getEndDate();
-	List<Lecture> getSessionLectures();
+	List<Lecture> getLectures();
 //	List<Enrollment> getEnrollments();
 	
 }

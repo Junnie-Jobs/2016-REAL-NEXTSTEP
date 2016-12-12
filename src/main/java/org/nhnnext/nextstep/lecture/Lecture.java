@@ -6,7 +6,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import org.nhnnext.nextstep.lesson.Lesson;
@@ -21,7 +20,7 @@ import lombok.ToString;
 
 @Data
 @NoArgsConstructor(force = true)
-@ToString(exclude="course")
+@ToString(exclude="courseSession, masterSession")
 @EqualsAndHashCode(of="id")
 @Entity
 public class Lecture extends AbstractPersistable<Long>{
@@ -40,7 +39,11 @@ public class Lecture extends AbstractPersistable<Long>{
 	private List<Lesson> lessons;
 	
 	private String pos;
-	
+		
+	public void addToLesson(Lesson lesson) {
+		lessons.add(lesson);
+		lesson.setLecture(this);
+	}
 	
 	public Lecture(String title){
 		this.title = title;

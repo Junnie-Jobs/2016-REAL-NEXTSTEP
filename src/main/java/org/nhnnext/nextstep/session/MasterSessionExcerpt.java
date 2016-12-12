@@ -12,6 +12,6 @@ public interface MasterSessionExcerpt {
 	Long getId();
 	Course getCourse();
 	String getName();
-	List<Lecture> getMasterSessionLectures();
+	List<Lecture> getLectures();
 
 }

@@ -7,8 +7,10 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.nhnnext.nextstep.lecture.Lecture;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+@NoArgsConstructor
 @Data
 @Entity
 @ToString(exclude="lecture")
@@ -17,10 +19,10 @@ public class Lesson extends AbstractPersistable<Long>{
 	@NotEmpty
 	private String title;
 
-	@NotEmpty
+//	@NotEmpty
 	private String content;
 
-	@ManyToOne(optional = false)
+	@ManyToOne
 	private Lecture lecture; // should be final
 
 	private Access access;
@@ -29,4 +31,10 @@ public class Lesson extends AbstractPersistable<Long>{
 		PUBLIC,
 		PRIVATE
 	}
+	
+	public Lesson(String title){
+		this.title = title;
+	}
+	
+	
 }

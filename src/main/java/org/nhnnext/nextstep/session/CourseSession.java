@@ -41,11 +41,16 @@ public class CourseSession extends AbstractEntity {
     
 	@OneToMany(mappedBy = "courseSession")
 //	@OrderColumn(name = "lecture_order")
-	private List<Lecture> sessionLectures;
+	private List<Lecture> lectures;
 
     @OneToMany(mappedBy = "session")
     private final List<Enrollment> enrollments = new ArrayList<>();
 
+	public void addToLectures(Lecture lecture) {
+		lectures.add(lecture);
+		lecture.setCourseSession(this);
+	}
+	
     public List<User> getParticipants() {
         return this.enrollments.stream()
                 .filter(Enrollment::isApproved)

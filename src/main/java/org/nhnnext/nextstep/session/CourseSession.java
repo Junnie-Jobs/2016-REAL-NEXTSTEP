@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.nhnnext.nextstep.core.AbstractEntity;
 import org.nhnnext.nextstep.course.Course;
 import org.nhnnext.nextstep.enrollment.Enrollment;
+import org.nhnnext.nextstep.lecture.Lecture;
 import org.nhnnext.nextstep.user.User;
 
 import javax.persistence.DiscriminatorValue;
@@ -32,9 +33,15 @@ public class CourseSession extends AbstractEntity {
 
     @NotEmpty
     private String name;
-
+    
+    private String pos;
+    // [1][2][5][4][3]
     private LocalDateTime startDate;
     private LocalDateTime endDate;
+    
+	@OneToMany(mappedBy = "courseSession")
+//	@OrderColumn(name = "lecture_order")
+	private List<Lecture> sessionLectures;
 
     @OneToMany(mappedBy = "session")
     private final List<Enrollment> enrollments = new ArrayList<>();

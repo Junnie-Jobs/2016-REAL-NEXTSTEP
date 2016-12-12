@@ -1,6 +1,7 @@
 package org.nhnnext.nextstep;
 import org.nhnnext.nextstep.course.Course;
 import org.nhnnext.nextstep.course.CourseRepository;
+import org.nhnnext.nextstep.lecture.Lecture;
 import org.nhnnext.nextstep.lecture.LectureRepository;
 import org.nhnnext.nextstep.lesson.LessonRepository;
 import org.nhnnext.nextstep.session.CourseSession;
@@ -81,11 +82,16 @@ public class Application {
 			masterSession.setCourse(course);
 			masterSessionRepository.save(masterSession);
 			
+			Lecture lecture0 = new Lecture("orientation");
+			lectureRepository.save(lecture0);
+			lecture0.setMasterSession(masterSession);
+			lectureRepository.save(lecture0);
+			
 			CourseSession session1 = new CourseSession("2016-01-JWP");
+			courseSessionRepository.save(session1);
 			session1.setCourse(course);
 			courseSessionRepository.save(session1);
-
-//			
+			
 			CourseSession session2 = new CourseSession("2016-02-JWP");
 			session2.setCourse(course);
 			courseSessionRepository.save(session2);
@@ -95,7 +101,17 @@ public class Application {
 			session3.setCourse(course);
 			courseSessionRepository.save(session3);
 
-
+			Lecture lecture1 = new Lecture("First Week");
+			lecture1.setCourseSession(session3);
+			lectureRepository.save(lecture1);
+			Lecture lecture2 = new Lecture("Second Week");
+			lecture2.setCourseSession(session3);
+			lectureRepository.save(lecture2);
+			Lecture lecture3 = new Lecture("Third Week");
+			lecture3.setCourseSession(session3);
+			lectureRepository.save(lecture3);
+			
+			
 //			Session session1 = new Session();
 //			session1.setCourse(course);
 //			session1.setName("jwp-basic-2016-1");

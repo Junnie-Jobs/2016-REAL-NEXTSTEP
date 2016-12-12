@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import org.nhnnext.nextstep.course.Course;
 import org.springframework.data.rest.core.config.Projection;
 
-@Projection(name = "excerpt", types = CourseSession.class)
+@Projection(name = "courseSession", types = CourseSession.class)
 public interface CourseSessionExcerpt {
 	
 	Long getId();

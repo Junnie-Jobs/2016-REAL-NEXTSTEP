@@ -87,8 +87,7 @@ public class Application {
 			CourseSession session3 = new CourseSession("2016-03-JWP");
 			session3.setCourse(course);
 			sessionRepository.save(session3);
-			
-			
+
 //			Session session1 = new Session();
 //			session1.setCourse(course);
 //			session1.setName("jwp-basic-2016-1");

@@ -7,7 +7,7 @@ import org.nhnnext.nextstep.course.Course;
 import org.nhnnext.nextstep.enrollment.Enrollment;
 import org.springframework.data.rest.core.config.Projection;
 
-@Projection(name = "excerpt", types = SessionExcerpt.class)
+@Projection(name = "excerpt", types = Session.class)
 public interface SessionExcerpt {
 	
 	Long getId();

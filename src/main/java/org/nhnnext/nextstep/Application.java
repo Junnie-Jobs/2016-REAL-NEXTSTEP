@@ -4,6 +4,8 @@ import org.nhnnext.nextstep.course.CourseRepository;
 import org.nhnnext.nextstep.lecture.LectureRepository;
 import org.nhnnext.nextstep.lesson.LessonRepository;
 import org.nhnnext.nextstep.session.CourseSession;
+import org.nhnnext.nextstep.session.MasterSession;
+import org.nhnnext.nextstep.session.Session;
 import org.nhnnext.nextstep.session.SessionRepository;
 import org.nhnnext.nextstep.user.Instructor;
 import org.nhnnext.nextstep.user.User;
@@ -41,17 +43,21 @@ public class Application {
 			student1.setAvatarUrl("https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/14494785_1303032459755018_522118762631698008_n.jpg?oh=3fa832407d4254f7e97fcba1b70d3f40&oe=58AD5DA2");
 			userRepository.save(student1);
 			
-//			User student2 = new User();
-//			ReflectionUtils.setField(usernameField, student2, "junniejobs");
-//			student2.setName("Lim Dongjun");
-//			student2.setAvatarUrl("https://avatars2.githubusercontent.com/u/3433096?v=3&s=460");
-//			userRepository.save(student2);
+			User student2 = new User();
+			Field student2UsernameField = ReflectionUtils.findField(User.class, "username");
+			ReflectionUtils.makeAccessible(student2UsernameField);
+			ReflectionUtils.setField(student2UsernameField, student2, "junniejobs");
+			student2.setName("Lim Dongjun");
+			student2.setAvatarUrl("https://avatars2.githubusercontent.com/u/3433096?v=3&s=460");
+			userRepository.save(student2);
 //			
-//			User student3 = new User();
-//			ReflectionUtils.setField(usernameField, student1, "Byeol");
-//			student3.setName("Seo Jaewon");
-//			student3.setAvatarUrl("https://scontent.xx.fbcdn.net/v/t1.0-9/230403_368531479891429_635986668_n.jpg?oh=a42efa9e657826e57a96db008960b817&oe=58C68AA9");
-//			userRepository.save(student3);
+			User student3 = new User();
+			Field student3UsernameField = ReflectionUtils.findField(User.class, "username");
+			ReflectionUtils.makeAccessible(student3UsernameField);
+			ReflectionUtils.setField(student3UsernameField, student3, "Byeol");
+			student3.setName("Seo Jaewon");
+			student3.setAvatarUrl("https://scontent.xx.fbcdn.net/v/t1.0-9/230403_368531479891429_635986668_n.jpg?oh=a42efa9e657826e57a96db008960b817&oe=58C68AA9");
+			userRepository.save(student3);
 			
 			Instructor professor1 = new Instructor();
 			Field professorUsernameField = ReflectionUtils.findField(Instructor.class, "username");
@@ -60,17 +66,19 @@ public class Application {
 			professor1.setName("jaesung");
 			professor1.setAvatarUrl("https://avatars2.githubusercontent.com/u/520500?v=3&s=400");
 			userRepository.save(professor1);
-						
-			Course course = new Course();
+			
+			MasterSession masterSession = new MasterSession("JWP-master");
+			Course course = new Course(masterSession);
 			course.setName("jwp-basic");
 			course.getInstructors().add(professor1);
 			courseRepository.save(course);
+		
+			masterSession.setCourse(course);
+			sessionRepository.save(masterSession);
 
 			CourseSession session1 = new CourseSession("2016-01-JWP");
+			session1.setCourse(course);
 			sessionRepository.save(session1);
-			
-			course.getSessions().add(session1);
-			courseRepository.save(course);
 			
 			
 //			Session session1 = new Session();

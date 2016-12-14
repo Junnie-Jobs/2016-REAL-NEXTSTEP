@@ -12,7 +12,7 @@ import org.springframework.data.rest.core.config.Projection;
 public interface CourseSessionExcerpt {
 	
 	Long getId();
-	Course getCourse();
+//	Course getCourse();
 	String getName();
 	String getPos();
 	LocalDateTime getStartDate();

@@ -67,10 +67,10 @@ public class Application {
 			student3.setEmail("Byeol@naver.com");
 			userRepository.save(student3);
 			
-			Instructor professor1 = new Instructor();
-			Field professorUsernameField = ReflectionUtils.findField(Instructor.class, "username");
-			ReflectionUtils.makeAccessible(professorUsernameField);
-			ReflectionUtils.setField(professorUsernameField, professor1, "javajigi");
+			Instructor professor1 = new Instructor("javajigi");
+//			Field professorUsernameField = ReflectionUtils.findField(Instructor.class, "username");
+//			ReflectionUtils.makeAccessible(professorUsernameField);
+//			ReflectionUtils.setField(professorUsernameField, professor1, "javajigi");
 			professor1.setName("jaesung");
 			professor1.setAvatarUrl("https://avatars2.githubusercontent.com/u/520500?v=3&s=400");
 			professor1.setEmail("javajigi@naver.com");
@@ -166,6 +166,7 @@ public class Application {
 					
 					Enrollment e3 = new Enrollment(session3, student3);
 					enrollmentRepository.save(e3);
+					
 		};
 	
 	

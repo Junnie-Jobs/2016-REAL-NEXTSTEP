@@ -10,6 +10,6 @@ public interface LessonExcerpt {
 	Long getId();
 	String getTitle();
 	String getContent();
-	Lecture getLecture();
+//	Lecture getLecture();
 	Access getAccess();
 }

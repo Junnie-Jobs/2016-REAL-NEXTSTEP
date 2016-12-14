@@ -2,7 +2,7 @@ package org.nhnnext.nextstep.lecture;
 
 import java.util.List;
 
-import org.nhnnext.nextstep.lesson.Lesson;
+import org.nhnnext.nextstep.lesson.LessonExcerpt;
 import org.nhnnext.nextstep.session.CourseSession;
 import org.nhnnext.nextstep.session.MasterSession;
 import org.springframework.data.rest.core.config.Projection;
@@ -14,6 +14,6 @@ public interface LectureExcerpt {
 	String getTitle();
 	CourseSession getCourseSession();
 	MasterSession getMasterSession();
-	List<Lesson> getLessons();
+	List<LessonExcerpt> getLessons();
 	String getPos();
 }

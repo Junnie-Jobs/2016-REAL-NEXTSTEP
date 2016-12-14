@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.nhnnext.nextstep.course.Course;
 import org.nhnnext.nextstep.enrollment.Enrollment;
+import org.nhnnext.nextstep.enrollment.EnrollmentExcerpt;
 import org.nhnnext.nextstep.lecture.Lecture;
 import org.springframework.data.rest.core.config.Projection;
 
@@ -18,6 +19,6 @@ public interface CourseSessionExcerpt {
 	LocalDateTime getStartDate();
 	LocalDateTime getEndDate();
 	List<Lecture> getLectures();
-	List<Enrollment> getEnrollments();
+	List<EnrollmentExcerpt> getEnrollments();
 	
 }

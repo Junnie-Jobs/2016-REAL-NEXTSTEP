@@ -5,11 +5,11 @@ import org.nhnnext.nextstep.session.CourseSession;
 import org.nhnnext.nextstep.user.User;
 import org.springframework.data.rest.core.config.Projection;
 
-@Projection(name = "courseSession", types = Enrollment.class)
+@Projection(name = "excerpt", types = Enrollment.class)
 public interface EnrollmentExcerpt {
 
 	Long getId();
-	Status getStatue();
+	Status getStatus();
 	CourseSession getSession();
 	User getUser();
 

@@ -1,12 +1,22 @@
-//package org.nhnnext.nextstep.config;
-//
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
+package org.nhnnext.nextstep.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.h2.server.web.WebServlet;
+import org.springframework.boot.context.embedded.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
 //import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 //import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 //
-//@Configuration
-//public class WebConfig {
+@Configuration
+public class WebConfig {
+	
+	 @Bean
+	    ServletRegistrationBean h2servletRegistration(){
+	        ServletRegistrationBean registrationBean = new ServletRegistrationBean( new WebServlet());
+	        registrationBean.addUrlMappings("/console/*");
+	        return registrationBean;
+	    }
+
 //
 //	@Bean
 //	public RoleHierarchy roleHierarchy() {
@@ -52,4 +62,4 @@
 ////		return new CorsFilter(source);
 ////	}
 //
-//}
+}

@@ -18,6 +18,7 @@ import org.nhnnext.nextstep.user.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 
 import org.springframework.util.ReflectionUtils;
@@ -166,6 +167,9 @@ public class Application {
 					
 					Enrollment e3 = new Enrollment(session3, student3);
 					enrollmentRepository.save(e3);
+					
+					
+			
 					
 		};
 	

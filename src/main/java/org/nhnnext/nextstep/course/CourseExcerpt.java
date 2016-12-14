@@ -13,6 +13,7 @@ public interface CourseExcerpt {
 	String getName();
 	String getDescription();
 	List<Instructor> getInstructors();
-	MasterSession getMasterSession();
+	MasterSession getMasterSession();	
 	List<CourseSession> getSessions();
+	CourseSession getDefaultSession();
 }

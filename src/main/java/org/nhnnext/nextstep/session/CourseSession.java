@@ -1,7 +1,10 @@
 package org.nhnnext.nextstep.session;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import org.hibernate.validator.constraints.NotEmpty;
 import org.nhnnext.nextstep.core.AbstractEntity;
 import org.nhnnext.nextstep.course.Course;
@@ -22,6 +25,8 @@ import java.util.stream.Collectors;
 @Data
 @Entity
 @DiscriminatorValue("COURSE")
+@ToString(exclude="course")
+@EqualsAndHashCode(of="id")
 public class CourseSession extends AbstractEntity {
 	
 	@ManyToOne

@@ -100,6 +100,8 @@ public class Application {
 			CourseSession session3 = new CourseSession("2016-03-JWP");
 			session3.setCourse(course);
 			courseSessionRepository.save(session3);
+			
+
 
 				Lecture lecture1 = new Lecture("First Week");
 				lecture1.setCourseSession(session3);
@@ -149,7 +151,8 @@ public class Application {
 					lesson9.setLecture(lecture3);
 					lessonRepository.save(lesson9);
 			
-			
+					course.setDefaultSession(session3);
+					courseRepository.save(course);
 		};
 	
 	

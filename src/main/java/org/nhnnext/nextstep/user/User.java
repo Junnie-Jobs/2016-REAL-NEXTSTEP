@@ -30,4 +30,4 @@ public class User extends AbstractEntity implements OAuth2User {
 
     @URL
     private String avatarUrl;
-    }
+}

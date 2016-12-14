@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.nhnnext.nextstep.core.AbstractEntity;
+import org.nhnnext.nextstep.lecture.Lecture;
 import org.nhnnext.nextstep.session.CourseSession;
 import org.nhnnext.nextstep.session.MasterSession;
 import org.nhnnext.nextstep.user.Instructor;
@@ -24,6 +25,9 @@ public class Course extends AbstractEntity {
 	private String name;
 
 	private String description;
+	
+	@OneToOne
+	private CourseSession defaultSession;
 
 	@Column(unique = true)
 	@ManyToMany
@@ -51,4 +55,13 @@ public class Course extends AbstractEntity {
 		this.masterSession = masterSession;
 	}
 
+//	@Transient
+//	public CourseSession getDefaultSession() {
+//		return this.sessions.get(this.sessions.size()-1);
+//	}
+//	
+//	@Transient
+//	public List<Lecture> getDefaultLectures() {
+//		return getDefaultSession().getLectures();
+//	}
 }

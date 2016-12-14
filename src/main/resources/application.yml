@@ -1,7 +1,7 @@
 spring:
   data:
     rest:
-      base-path: srello.xyz/api
+      base-path: /api
   profiles:
     active: production
 

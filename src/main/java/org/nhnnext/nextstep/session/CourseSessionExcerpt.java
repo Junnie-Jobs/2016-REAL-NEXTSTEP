@@ -13,6 +13,7 @@ public interface CourseSessionExcerpt {
 	Long getId();
 	Course getCourse();
 	String getName();
+	String getPos();
 	LocalDateTime getStartDate();
 	LocalDateTime getEndDate();
 	List<Lecture> getLectures();

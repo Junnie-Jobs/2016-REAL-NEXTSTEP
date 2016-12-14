@@ -1,9 +1,8 @@
 package org.nhnnext.nextstep.session;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
-import org.nhnnext.nextstep.course.Course;
 import org.nhnnext.nextstep.enrollment.EnrollmentExcerpt;
 import org.nhnnext.nextstep.lecture.LectureExcerpt;
 import org.springframework.data.rest.core.config.Projection;
@@ -15,8 +14,8 @@ public interface CourseSessionExcerpt {
 //	Course getCourse();
 	String getName();
 	String getPos();
-	LocalDateTime getStartDate();
-	LocalDateTime getEndDate();
+	LocalDate getStartDate();
+	LocalDate getEndDate();
 	List<LectureExcerpt> getLectures();
 	List<EnrollmentExcerpt> getEnrollments();
 	

@@ -25,6 +25,8 @@ import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 @SpringBootApplication
@@ -94,6 +96,7 @@ public class Application {
 			CourseSession session1 = new CourseSession("2016-01-JWP");
 			courseSessionRepository.save(session1);
 			session1.setCourse(course);
+
 			courseSessionRepository.save(session1);
 			
 			CourseSession session2 = new CourseSession("2016-02-JWP");
@@ -102,10 +105,15 @@ public class Application {
 		
 			CourseSession session3 = new CourseSession("2016-03-JWP");
 			session3.setCourse(course);
+//			courseSessionRepository.save(session3);
+			
+//			LocalDateTime startDate = 
+			session3.setStartDate(LocalDate.now());
+			session3.setEndDate(LocalDate.now());
+			System.out.println("시간");
+			System.out.println(LocalDate.now());
 			courseSessionRepository.save(session3);
 			
-
-
 				Lecture lecture1 = new Lecture("First Week");
 				lecture1.setCourseSession(session3);
 				lectureRepository.save(lecture1);

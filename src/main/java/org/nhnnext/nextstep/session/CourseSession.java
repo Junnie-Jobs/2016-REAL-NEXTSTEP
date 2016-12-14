@@ -1,5 +1,6 @@
 package org.nhnnext.nextstep.session;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +43,8 @@ public class CourseSession extends AbstractEntity {
     
     private String pos;
     // [1][2][5][4][3]
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     
 	@OneToMany(mappedBy = "courseSession")
 //	@OrderColumn(name = "lecture_order")

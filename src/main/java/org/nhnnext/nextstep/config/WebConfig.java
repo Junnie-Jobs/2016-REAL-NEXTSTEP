@@ -1,8 +1,5 @@
 package org.nhnnext.nextstep.config;
 
-import org.h2.server.web.WebServlet;
-import org.springframework.boot.context.embedded.ServletRegistrationBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 //import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 //import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
@@ -10,12 +7,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class WebConfig {
 	
-	 @Bean
-	    ServletRegistrationBean h2servletRegistration(){
-	        ServletRegistrationBean registrationBean = new ServletRegistrationBean( new WebServlet());
-	        registrationBean.addUrlMappings("/console/*");
-	        return registrationBean;
-	    }
+//	 @Bean
+//	    ServletRegistrationBean h2servletRegistration(){
+//	        ServletRegistrationBean registrationBean = new ServletRegistrationBean( new WebServlet());
+//	        registrationBean.addUrlMappings("/console/*");
+//	        return registrationBean;
+//	    }
 
 //
 //	@Bean

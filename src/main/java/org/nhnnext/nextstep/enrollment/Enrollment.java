@@ -1,21 +1,22 @@
 package org.nhnnext.nextstep.enrollment;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+
 import org.nhnnext.nextstep.core.AbstractEntity;
 import org.nhnnext.nextstep.session.CourseSession;
-import org.nhnnext.nextstep.session.Session;
 import org.nhnnext.nextstep.user.User;
 
-import javax.persistence.*;
+import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Data
 @ToString(callSuper = true)
-public abstract class Enrollment extends AbstractEntity {
+public class Enrollment extends AbstractEntity {
 
     @ManyToOne(optional = false)
     private final CourseSession session;
@@ -32,7 +33,7 @@ public abstract class Enrollment extends AbstractEntity {
     public Enrollment() {
         this(null, null);
     }
-
+    
     private Status status;
 
     public static enum Status {

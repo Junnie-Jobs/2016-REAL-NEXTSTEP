@@ -25,6 +25,7 @@ import lombok.ToString;
 @Entity
 public class Lecture extends AbstractPersistable<Long>{
 	
+
 	@NotNull
 	private String title;
 

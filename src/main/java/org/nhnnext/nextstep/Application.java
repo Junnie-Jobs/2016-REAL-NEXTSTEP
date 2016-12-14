@@ -1,6 +1,8 @@
 package org.nhnnext.nextstep;
 import org.nhnnext.nextstep.course.Course;
 import org.nhnnext.nextstep.course.CourseRepository;
+import org.nhnnext.nextstep.enrollment.Enrollment;
+import org.nhnnext.nextstep.enrollment.EnrollmentRepository;
 import org.nhnnext.nextstep.lecture.Lecture;
 import org.nhnnext.nextstep.lecture.LectureRepository;
 import org.nhnnext.nextstep.lesson.Lesson;
@@ -34,7 +36,7 @@ public class Application {
 	
 	@Bean
 	public CommandLineRunner demo(LectureRepository lectureRepository, UserRepository userRepository,
-			CourseRepository courseRepository, CourseSessionRepository courseSessionRepository, MasterSessionRepository masterSessionRepository, LessonRepository lessonRepository) {
+			CourseRepository courseRepository, CourseSessionRepository courseSessionRepository, MasterSessionRepository masterSessionRepository, LessonRepository lessonRepository, EnrollmentRepository enrollmentRepository) {
 		return (args) -> {
 
 			Field usernameField = ReflectionUtils.findField(User.class, "username");
@@ -153,6 +155,17 @@ public class Application {
 			
 					course.setDefaultSession(session3);
 					courseRepository.save(course);
+					
+					Enrollment e1 = new Enrollment(session3, student1);
+					e1.setStatus(e1.getStatus().APPROVED);					
+					enrollmentRepository.save(e1);
+					
+					Enrollment e2 = new Enrollment(session3, student2);
+					e2.setStatus(e2.getStatus().APPROVED);
+					enrollmentRepository.save(e2);
+					
+					Enrollment e3 = new Enrollment(session3, student3);
+					enrollmentRepository.save(e3);
 		};
 	
 	

@@ -1,20 +1,23 @@
 package org.nhnnext.nextstep.course;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.nhnnext.nextstep.core.AbstractEntity;
-import org.nhnnext.nextstep.lecture.Lecture;
 import org.nhnnext.nextstep.session.CourseSession;
 import org.nhnnext.nextstep.session.MasterSession;
 import org.nhnnext.nextstep.user.Instructor;
 
-import javax.persistence.*;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import java.util.ArrayList;
-import java.util.List;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(force = true)
 @Data
@@ -25,7 +28,7 @@ public class Course extends AbstractEntity {
 	private String name;
 
 	private String description;
-	
+
 	@OneToOne
 	private CourseSession defaultSession;
 
@@ -55,13 +58,13 @@ public class Course extends AbstractEntity {
 		this.masterSession = masterSession;
 	}
 
-//	@Transient
-//	public CourseSession getDefaultSession() {
-//		return this.sessions.get(this.sessions.size()-1);
-//	}
-//	
-//	@Transient
-//	public List<Lecture> getDefaultLectures() {
-//		return getDefaultSession().getLectures();
-//	}
+	// @Transient
+	// public CourseSession getDefaultSession() {
+	// return this.sessions.get(this.sessions.size()-1);
+	// }
+	//
+	// @Transient
+	// public List<Lecture> getDefaultLectures() {
+	// return getDefaultSession().getLectures();
+	// }
 }

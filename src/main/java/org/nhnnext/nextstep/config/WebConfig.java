@@ -1,11 +1,22 @@
 package org.nhnnext.nextstep.config;
 
+import org.h2.server.web.WebServlet;
+import org.springframework.boot.context.embedded.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 //import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 //import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 //
 @Configuration
 public class WebConfig {
+	
+	@SuppressWarnings("deprecation")
+	@Bean
+	public ServletRegistrationBean h2servletRegistration() {
+	    ServletRegistrationBean registration = new ServletRegistrationBean(new WebServlet());
+	    registration.addUrlMappings("/h2-console/*");
+	    return registration;
+	}
 	
 //	 @Bean
 //	    ServletRegistrationBean h2servletRegistration(){

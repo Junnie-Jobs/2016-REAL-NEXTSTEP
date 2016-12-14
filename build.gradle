@@ -28,6 +28,7 @@ dependencies {
 	compile 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8'
 	compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
 	compile 'com.fasterxml.jackson.module:jackson-module-parameter-names'
+	compile('org.springframework.boot:spring-boot-starter-jdbc')
 	runtime 'org.springframework.boot:spring-boot-devtools'
 	runtime 'com.h2database:h2'
 	compileOnly 'org.projectlombok:lombok'

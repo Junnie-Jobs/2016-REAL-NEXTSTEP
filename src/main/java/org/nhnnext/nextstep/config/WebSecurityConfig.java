@@ -61,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .frameOptions().disable()
                 .and()
                 .authorizeRequests().antMatchers("/").permitAll().and()
-                .authorizeRequests().antMatchers("/console/**").permitAll();
+                .authorizeRequests().antMatchers("/h2-console/**").permitAll();
         // @formatter:on
 	}
 

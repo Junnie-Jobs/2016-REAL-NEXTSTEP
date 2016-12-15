@@ -44,19 +44,19 @@ public class Course extends AbstractEntity {
 																// fetch =
 																// FetchType.LAZY)
 	// @Cascade(CascadeType.ALL)
-	private final List<CourseSession> sessions = new ArrayList<>();
+	private final List<Session> sessions = new ArrayList<>();
 
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "course")
-	private MasterSession masterSession;
+//	@OneToOne(cascade = CascadeType.ALL, mappedBy = "course")
+//	private MasterSession masterSession;
 
 	public void addToSessions(CourseSession session) {
 		this.getSessions().add(session);
 		session.setCourse(this);
 	}
 
-	public Course(MasterSession masterSession) {
-		this.masterSession = masterSession;
-	}
+//	public Course(MasterSession masterSession) {
+//		this.masterSession = masterSession;
+//	}
 
 	// @Transient
 	// public CourseSession getDefaultSession() {

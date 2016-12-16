@@ -1,7 +1,4 @@
 package org.nhnnext.nextstep;
-import java.lang.reflect.Field;
-import java.time.LocalDate;
-
 import org.nhnnext.nextstep.course.Course;
 import org.nhnnext.nextstep.course.CourseRepository;
 import org.nhnnext.nextstep.enrollment.Enrollment;
@@ -11,17 +8,26 @@ import org.nhnnext.nextstep.lecture.LectureRepository;
 import org.nhnnext.nextstep.lesson.Lesson;
 import org.nhnnext.nextstep.lesson.LessonRepository;
 import org.nhnnext.nextstep.session.CourseSession;
-import org.nhnnext.nextstep.session.CourseSessionRepository;
 import org.nhnnext.nextstep.session.MasterSession;
 import org.nhnnext.nextstep.session.MasterSessionRepository;
+import org.nhnnext.nextstep.session.Session;
+import org.nhnnext.nextstep.session.CourseSessionRepository;
 import org.nhnnext.nextstep.user.Instructor;
 import org.nhnnext.nextstep.user.User;
 import org.nhnnext.nextstep.user.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
+
 import org.springframework.util.ReflectionUtils;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Arrays;
 
 @SpringBootApplication
 public class Application {
@@ -109,7 +115,7 @@ public class Application {
 			courseSessionRepository.save(session3);
 			
 				Lecture lecture1 = new Lecture("First Week");
-				lecture1.setMasterSession(masterSession);
+				lecture1.setCourseSession(session3);
 				lectureRepository.save(lecture1);
 	
 					Lesson lesson1 = new Lesson("CRUD");
@@ -125,7 +131,7 @@ public class Application {
 					lessonRepository.save(lesson3);
 
 				Lecture lecture2 = new Lecture("Second Week");
-				lecture2.setMasterSession(masterSession);
+				lecture2.setCourseSession(session3);
 				lectureRepository.save(lecture2);
 				
 					Lesson lesson4 = new Lesson("java");
@@ -141,7 +147,7 @@ public class Application {
 					lessonRepository.save(lesson6);
 		
 				Lecture lecture3 = new Lecture("Third Week");
-				lecture3.setMasterSession(masterSession);
+				lecture3.setCourseSession(session3);
 				lectureRepository.save(lecture3);
 				
 					Lesson lesson7 = new Lesson("front");

@@ -3,28 +3,30 @@ package org.nhnnext.nextstep.course;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import org.nhnnext.nextstep.core.domain.AbstractAuditingEntity;
+import org.nhnnext.nextstep.core.domain.acls.AclImpl;
 import org.nhnnext.nextstep.session.CourseSession;
+import org.nhnnext.nextstep.session.MasterSession;
+import org.nhnnext.nextstep.session.Session;
 import org.nhnnext.nextstep.user.AuthenticationUtils;
 import org.nhnnext.nextstep.user.GrantedAuthorities;
 import org.nhnnext.nextstep.user.Instructor;
 import org.nhnnext.nextstep.user.User;
-import org.springframework.security.acls.domain.AclImpl;
 import org.springframework.security.acls.domain.BasePermission;
 import org.springframework.security.acls.domain.GrantedAuthoritySid;
 import org.springframework.security.acls.model.Acl;
 import org.springframework.security.acls.model.MutableAcl;
 import org.springframework.security.acls.model.Sid;
 import org.springframework.security.core.Authentication;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -38,9 +40,12 @@ public class Course extends AbstractAuditingEntity<User, Long> {
 
     private String description;
 
-//    @Column(unique = true)
-//    @ManyToMany
-//    private final List<Instructor> instructors = new ArrayList<>();
+    @Column(unique = true)
+    @ManyToMany
+    private final List<Instructor> instructors = new ArrayList<>();
+    
+	@OneToOne
+	private CourseSession defaultSession;
 
     public List<Instructor> getInstructors() {
         if (getCreatedBy() == null) {
@@ -54,7 +59,7 @@ public class Course extends AbstractAuditingEntity<User, Long> {
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course", orphanRemoval = true)
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "course")//(mappedBy = "course", fetch = FetchType.LAZY)
 //    @Cascade(CascadeType.ALL)
-    private final List<CourseSession> sessions = new ArrayList<>();
+    private final List<Session> sessions = new ArrayList<>();
 
     public void addToSessions(CourseSession session) {
         this.getSessions().add(session);
@@ -89,6 +94,10 @@ public class Course extends AbstractAuditingEntity<User, Long> {
         acl.insertAce(acl.getEntries().size(), BasePermission.WRITE, new GrantedAuthoritySid(GrantedAuthorities.COURSE_INSTRUCTOR), true);
         acl.insertAce(acl.getEntries().size(), BasePermission.DELETE, new GrantedAuthoritySid(GrantedAuthorities.COURSE_INSTRUCTOR), true);
         return acl;
+    }
+    
+    public Course(MasterSession masterSession){
+    	this.getSessions().add(masterSession);
     }
 
 }

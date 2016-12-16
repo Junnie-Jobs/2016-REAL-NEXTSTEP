@@ -5,7 +5,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
-import org.nhnnext.nextstep.core.AbstractEntity;
+import org.nhnnext.nextstep.core.domain.AbstractEntity;
 import org.nhnnext.nextstep.session.CourseSession;
 import org.nhnnext.nextstep.user.User;
 

@@ -12,7 +12,7 @@ import org.nhnnext.nextstep.lesson.LessonRepository;
 import org.nhnnext.nextstep.session.CourseSession;
 import org.nhnnext.nextstep.session.CourseSessionRepository;
 import org.nhnnext.nextstep.session.MasterSession;
-import org.nhnnext.nextstep.session.MasterSessionRepository;
+import org.nhnnext.nextstep.session.Session;
 import org.nhnnext.nextstep.user.Instructor;
 import org.nhnnext.nextstep.user.User;
 import org.nhnnext.nextstep.user.UserRepository;
@@ -32,7 +32,7 @@ public class Application {
 	
 	@Bean
 	public CommandLineRunner demo(LectureRepository lectureRepository, UserRepository userRepository,
-			CourseRepository courseRepository, CourseSessionRepository courseSessionRepository, MasterSessionRepository masterSessionRepository, LessonRepository lessonRepository, EnrollmentRepository enrollmentRepository) {
+			CourseRepository courseRepository, CourseSessionRepository courseSessionRepository, LessonRepository lessonRepository, EnrollmentRepository enrollmentRepository) {
 		return (args) -> {
 
 			Field usernameField = ReflectionUtils.findField(User.class, "username");
@@ -79,7 +79,7 @@ public class Application {
 			courseRepository.save(course);
 		
 			masterSession.setCourse(course);
-			masterSessionRepository.save(masterSession);
+			courseSessionRepository.save(masterSession);
 			
 			Lecture lecture0 = new Lecture("orientation");
 			lectureRepository.save(lecture0);
@@ -98,13 +98,10 @@ public class Application {
 		
 			CourseSession session3 = new CourseSession("2016-03-JWP");
 			session3.setCourse(course);
-//			courseSessionRepository.save(session3);
+			courseSessionRepository.save(session3);
 			
-//			LocalDateTime startDate = 
 			session3.setStartDate(LocalDate.now());
 			session3.setEndDate(LocalDate.now());
-			System.out.println("시간");
-			System.out.println(LocalDate.now());
 			courseSessionRepository.save(session3);
 			
 				Lecture lecture1 = new Lecture("First Week");

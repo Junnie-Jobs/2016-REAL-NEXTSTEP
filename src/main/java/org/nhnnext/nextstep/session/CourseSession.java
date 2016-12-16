@@ -5,25 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.nhnnext.nextstep.course.Course;
 import org.nhnnext.nextstep.enrollment.Enrollment;
 import org.nhnnext.nextstep.lecture.Lecture;
-import org.nhnnext.nextstep.user.GrantedAuthorities;
 import org.nhnnext.nextstep.user.User;
-import org.springframework.security.acls.domain.GrantedAuthoritySid;
-import org.springframework.security.acls.model.Sid;
-import org.springframework.security.core.Authentication;
-import org.springframework.util.Assert;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -38,9 +27,6 @@ import lombok.ToString;
 @EqualsAndHashCode(of="id")
 public class CourseSession extends Session {
 	
-
-	
-
     @NotEmpty
     private String name;
     

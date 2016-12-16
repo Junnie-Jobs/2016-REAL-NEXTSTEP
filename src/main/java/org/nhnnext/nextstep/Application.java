@@ -112,7 +112,7 @@ public class Application {
 			session3.setEndDate(LocalDate.now());
 			courseSessionRepository.save(session3);
 			
-				Lecture lecture1 = new Lecture("Orientation");
+				Lecture lecture1 = new Lecture("Second Step");
 				lecture1.setMasterSession(masterSession);
 				lectureRepository.save(lecture1);
 	
@@ -128,7 +128,7 @@ public class Application {
 					lesson3.setLecture(lecture1);
 					lessonRepository.save(lesson3);
 
-				Lecture lecture2 = new Lecture("First Week");
+				Lecture lecture2 = new Lecture("Third Step");
 				lecture2.setMasterSession(masterSession);
 				lectureRepository.save(lecture2);
 				

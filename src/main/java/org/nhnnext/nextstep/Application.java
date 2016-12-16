@@ -128,8 +128,8 @@ public class Application {
 					lesson3.setLecture(lecture1);
 					lessonRepository.save(lesson3);
 
-				Lecture lecture2 = new Lecture("Second Week");
-				lecture2.setCourseSession(session3);
+				Lecture lecture2 = new Lecture("First Week");
+				lecture2.setMasterSession(masterSession);
 				lectureRepository.save(lecture2);
 				
 					Lesson lesson4 = new Lesson("java");
@@ -144,7 +144,7 @@ public class Application {
 					lesson6.setLecture(lecture2);
 					lessonRepository.save(lesson6);
 		
-				Lecture lecture3 = new Lecture("Third Week");
+				Lecture lecture3 = new Lecture("Orientation");
 				lecture3.setCourseSession(session3);
 				lectureRepository.save(lecture3);
 				

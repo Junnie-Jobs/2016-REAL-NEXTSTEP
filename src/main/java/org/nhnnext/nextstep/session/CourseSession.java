@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -31,9 +32,6 @@ import lombok.ToString;
 @EqualsAndHashCode(of="id")
 public class CourseSession extends AbstractEntity {
 	
-	@ManyToOne
-    private Course course;
-
     public CourseSession(String name) {
         this.name = name;
     }

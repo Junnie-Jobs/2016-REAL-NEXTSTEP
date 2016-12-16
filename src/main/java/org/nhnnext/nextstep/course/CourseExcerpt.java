@@ -5,7 +5,6 @@ import org.nhnnext.nextstep.session.CourseSession;
 import org.nhnnext.nextstep.session.CourseSessionExcerpt;
 import org.nhnnext.nextstep.session.MasterSession;
 import org.nhnnext.nextstep.user.Instructor;
-import org.nhnnext.nextstep.user.UserExcerpt;
 import org.springframework.data.rest.core.config.Projection;
 
 @Projection(name = "excerpt", types = Course.class)

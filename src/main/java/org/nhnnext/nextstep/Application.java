@@ -88,7 +88,7 @@ public class Application {
 			masterSession.setCourse(course);
 			masterSessionRepository.save(masterSession);
 			
-			Lecture lecture0 = new Lecture("orientation");
+			Lecture lecture0 = new Lecture("First Step");
 			lectureRepository.save(lecture0);
 			lecture0.setMasterSession(masterSession);
 			lectureRepository.save(lecture0);
@@ -110,12 +110,10 @@ public class Application {
 //			LocalDateTime startDate = 
 			session3.setStartDate(LocalDate.now());
 			session3.setEndDate(LocalDate.now());
-			System.out.println("시간");
-			System.out.println(LocalDate.now());
 			courseSessionRepository.save(session3);
 			
-				Lecture lecture1 = new Lecture("First Week");
-				lecture1.setCourseSession(session3);
+				Lecture lecture1 = new Lecture("Orientation");
+				lecture1.setMasterSession(masterSession);
 				lectureRepository.save(lecture1);
 	
 					Lesson lesson1 = new Lesson("CRUD");

@@ -1,4 +1,7 @@
 package org.nhnnext.nextstep;
+import java.lang.reflect.Field;
+import java.time.LocalDate;
+
 import org.nhnnext.nextstep.course.Course;
 import org.nhnnext.nextstep.course.CourseRepository;
 import org.nhnnext.nextstep.enrollment.Enrollment;
@@ -8,26 +11,17 @@ import org.nhnnext.nextstep.lecture.LectureRepository;
 import org.nhnnext.nextstep.lesson.Lesson;
 import org.nhnnext.nextstep.lesson.LessonRepository;
 import org.nhnnext.nextstep.session.CourseSession;
+import org.nhnnext.nextstep.session.CourseSessionRepository;
 import org.nhnnext.nextstep.session.MasterSession;
 import org.nhnnext.nextstep.session.MasterSessionRepository;
-import org.nhnnext.nextstep.session.Session;
-import org.nhnnext.nextstep.session.CourseSessionRepository;
 import org.nhnnext.nextstep.user.Instructor;
 import org.nhnnext.nextstep.user.User;
 import org.nhnnext.nextstep.user.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
-
 import org.springframework.util.ReflectionUtils;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Arrays;
 
 @SpringBootApplication
 public class Application {
@@ -105,7 +99,7 @@ public class Application {
 		
 			CourseSession session3 = new CourseSession("2016-03-JWP");
 			session3.setCourse(course);
-//			courseSessionRepository.save(session3);
+			courseSessionRepository.save(session3);
 			
 //			LocalDateTime startDate = 
 			session3.setStartDate(LocalDate.now());
@@ -175,6 +169,103 @@ public class Application {
 					enrollmentRepository.save(e3);
 					
 					
+					
+					
+					
+					//---------------------------------------------//
+					
+//					MasterSession masterSession2 = new MasterSession("JWP-master-adv");
+//					Course course2 = new Course(masterSession2);
+//					course.setName("jwp-adv-basic");
+//					course.getInstructors().add(professor1);
+//					courseRepository.save(course2);
+//				
+//					masterSession2.setCourse(course2);
+//					masterSessionRepository.save(masterSession2);
+//					
+//					Lecture lecture4 = new Lecture("First Step");
+//					lectureRepository.save(lecture4);
+//					lecture4.setMasterSession(masterSession2);
+//					lectureRepository.save(lecture4);
+//					
+//					CourseSession session4 = new CourseSession("2016-01-JWP");
+//					session4.setCourse(course2);
+//					courseSessionRepository.save(session4);
+//					
+//					CourseSession session5 = new CourseSession("2016-02-JWP");
+//					session5.setCourse(course2);
+//					courseSessionRepository.save(session5);
+//				
+//					CourseSession session6 = new CourseSession("2016-03-JWP");
+//					session6.setCourse(course2);
+//					courseSessionRepository.save(session6);
+//					
+//					session6.setStartDate(LocalDate.now());
+//					session6.setEndDate(LocalDate.now());
+//					courseSessionRepository.save(session6);
+//					
+//						Lecture lecture5 = new Lecture("Second Step");
+//						lecture5.setMasterSession(masterSession2);
+//						lectureRepository.save(lecture5);
+//			
+//							Lesson lesson10 = new Lesson("CRUD");
+//							lesson10.setLecture(lecture5);
+//							lessonRepository.save(lesson10);
+//										
+//							Lesson lesson11 = new Lesson("ajax");
+//							lesson11.setLecture(lecture5);
+//							lessonRepository.save(lesson11);
+//
+//							Lesson lesson12 = new Lesson("Unit test");
+//							lesson12.setLecture(lecture5);
+//							lessonRepository.save(lesson12);
+//
+//						Lecture lecture6 = new Lecture("Third Step");
+//						lecture6.setMasterSession(masterSession2);
+//						lectureRepository.save(lecture6);
+//						
+//							Lesson lesson13 = new Lesson("java");
+//							lesson13.setLecture(lecture6);
+//							lessonRepository.save(lesson13);
+//										
+//							Lesson lesson14 = new Lesson("javascript");
+//							lesson14.setLecture(lecture6);
+//							lessonRepository.save(lesson14);
+//			
+//							Lesson lesson15 = new Lesson("lamda");
+//							lesson15.setLecture(lecture6);
+//							lessonRepository.save(lesson15);
+//				
+//						Lecture lecture7 = new Lecture("Orientation");
+//						lecture7.setCourseSession(session6);
+//						lectureRepository.save(lecture7);
+//						
+//							Lesson lesson16 = new Lesson("front");
+//							lesson16.setLecture(lecture7);
+//							lessonRepository.save(lesson16);
+//										
+//							Lesson lesson17 = new Lesson("react");
+//							lesson17.setLecture(lecture7);
+//							lessonRepository.save(lesson17);
+//			
+//							Lesson lesson18 = new Lesson("angular");
+//							lesson18.setLecture(lecture7);
+//							lessonRepository.save(lesson18);
+//					
+//							course.setDefaultSession(session6);
+//							courseRepository.save(course2);
+//							
+//							Enrollment e4 = new Enrollment(session6, student1);
+//							e4.setStatus(e1.getStatus().APPROVED);					
+//							enrollmentRepository.save(e4);
+//							
+//							Enrollment e5 = new Enrollment(session6, student2);
+//							e5.setStatus(e2.getStatus().APPROVED);
+//							enrollmentRepository.save(e5);
+//							
+//							Enrollment e6 = new Enrollment(session6, student3);
+//							enrollmentRepository.save(e6);
+//					
 			
 					
 		};

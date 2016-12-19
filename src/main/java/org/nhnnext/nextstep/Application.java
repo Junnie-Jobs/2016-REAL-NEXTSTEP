@@ -85,90 +85,90 @@ public class Application {
 //			course.getInstructors().add(professor1);
 			masterSession.setCourse(course);
 			courseRepository.save(course);			
-			masterSessionRepository.save(masterSession);
+//			masterSessionRepository.save(masterSession);
 //			
-			Lecture lecture0 = new Lecture("orientation");
-			lectureRepository.save(lecture0);
-			lecture0.setMasterSession(masterSession);
-			lectureRepository.save(lecture0);
-			
-			CourseSession session1 = new CourseSession("2016-01-JWP");
-			session1.setCourse(course);
-			courseSessionRepository.save(session1);
-
-			CourseSession session2 = new CourseSession("2016-02-JWP");
-			session2.setCourse(course);
-			courseSessionRepository.save(session2);
-		
-			CourseSession session3 = new CourseSession("2016-03-JWP");
-			session3.setCourse(course);
-			courseSessionRepository.save(session3);
+//			Lecture lecture0 = new Lecture("orientation");
+//			lectureRepository.save(lecture0);
+//			lecture0.setMasterSession(masterSession);
+//			lectureRepository.save(lecture0);
 //			
-			session3.setStartDate(LocalDate.now());
-			session3.setEndDate(LocalDate.now());
-			courseSessionRepository.save(session3);
-			
-			course.setDefaultSession(session3);
-//			courseRepository.save(course);
-			
-				Lecture lecture1 = new Lecture("First Week");
-				lecture1.setCourseSession(session3);
-				lectureRepository.save(lecture1);
-	
-					Lesson lesson1 = new Lesson("CRUD");
-					lesson1.setLecture(lecture1);
-					lessonRepository.save(lesson1);
-								
-					Lesson lesson2 = new Lesson("ajax");
-					lesson2.setLecture(lecture1);
-					lessonRepository.save(lesson2);
-
-					Lesson lesson3 = new Lesson("Unit test");
-					lesson3.setLecture(lecture1);
-					lessonRepository.save(lesson3);
-
-				Lecture lecture2 = new Lecture("Second Week");
-				lecture2.setCourseSession(session3);
-				lectureRepository.save(lecture2);
-				
-					Lesson lesson4 = new Lesson("java");
-					lesson4.setLecture(lecture2);
-					lessonRepository.save(lesson4);
-								
-					Lesson lesson5 = new Lesson("javascript");
-					lesson5.setLecture(lecture2);
-					lessonRepository.save(lesson5);
-	
-					Lesson lesson6 = new Lesson("lamda");
-					lesson6.setLecture(lecture2);
-					lessonRepository.save(lesson6);
-		
-				Lecture lecture3 = new Lecture("Third Week");
-				lecture3.setCourseSession(session3);
-				lectureRepository.save(lecture3);
-				
-					Lesson lesson7 = new Lesson("front");
-					lesson7.setLecture(lecture3);
-					lessonRepository.save(lesson7);
-								
-					Lesson lesson8 = new Lesson("react");
-					lesson8.setLecture(lecture3);
-					lessonRepository.save(lesson8);
-	
-					Lesson lesson9 = new Lesson("angular");
-					lesson9.setLecture(lecture3);
-					lessonRepository.save(lesson9);
-					
-					Enrollment e1 = new Enrollment(session3, student1);
-					e1.setStatus(e1.getStatus().APPROVED);					
-					enrollmentRepository.save(e1);
-					
-					Enrollment e2 = new Enrollment(session3, student2);
-					e2.setStatus(e2.getStatus().APPROVED);
-					enrollmentRepository.save(e2);
-					
-					Enrollment e3 = new Enrollment(session3, student3);
-					enrollmentRepository.save(e3);
+//			CourseSession session1 = new CourseSession("2016-01-JWP");
+//			session1.setCourse(course);
+//			courseSessionRepository.save(session1);
+//
+//			CourseSession session2 = new CourseSession("2016-02-JWP");
+//			session2.setCourse(course);
+//			courseSessionRepository.save(session2);
+//		
+//			CourseSession session3 = new CourseSession("2016-03-JWP");
+//			session3.setCourse(course);
+//			courseSessionRepository.save(session3);
+////			
+//			session3.setStartDate(LocalDate.now());
+//			session3.setEndDate(LocalDate.now());
+//			courseSessionRepository.save(session3);
+//			
+//			course.setDefaultSession(session3);
+////			courseRepository.save(course);
+//			
+//				Lecture lecture1 = new Lecture("First Week");
+//				lecture1.setCourseSession(session3);
+//				lectureRepository.save(lecture1);
+//	
+//					Lesson lesson1 = new Lesson("CRUD");
+//					lesson1.setLecture(lecture1);
+//					lessonRepository.save(lesson1);
+//								
+//					Lesson lesson2 = new Lesson("ajax");
+//					lesson2.setLecture(lecture1);
+//					lessonRepository.save(lesson2);
+//
+//					Lesson lesson3 = new Lesson("Unit test");
+//					lesson3.setLecture(lecture1);
+//					lessonRepository.save(lesson3);
+//
+//				Lecture lecture2 = new Lecture("Second Week");
+//				lecture2.setCourseSession(session3);
+//				lectureRepository.save(lecture2);
+//				
+//					Lesson lesson4 = new Lesson("java");
+//					lesson4.setLecture(lecture2);
+//					lessonRepository.save(lesson4);
+//								
+//					Lesson lesson5 = new Lesson("javascript");
+//					lesson5.setLecture(lecture2);
+//					lessonRepository.save(lesson5);
+//	
+//					Lesson lesson6 = new Lesson("lamda");
+//					lesson6.setLecture(lecture2);
+//					lessonRepository.save(lesson6);
+//		
+//				Lecture lecture3 = new Lecture("Third Week");
+//				lecture3.setCourseSession(session3);
+//				lectureRepository.save(lecture3);
+//				
+//					Lesson lesson7 = new Lesson("front");
+//					lesson7.setLecture(lecture3);
+//					lessonRepository.save(lesson7);
+//								
+//					Lesson lesson8 = new Lesson("react");
+//					lesson8.setLecture(lecture3);
+//					lessonRepository.save(lesson8);
+//	
+//					Lesson lesson9 = new Lesson("angular");
+//					lesson9.setLecture(lecture3);
+//					lessonRepository.save(lesson9);
+//					
+//					Enrollment e1 = new Enrollment(session3, student1);
+//					e1.setStatus(e1.getStatus().APPROVED);					
+//					enrollmentRepository.save(e1);
+//					
+//					Enrollment e2 = new Enrollment(session3, student2);
+//					e2.setStatus(e2.getStatus().APPROVED);
+//					enrollmentRepository.save(e2);
+//					
+//					Enrollment e3 = new Enrollment(session3, student3);
+//					enrollmentRepository.save(e3);
 //					
 					
 			

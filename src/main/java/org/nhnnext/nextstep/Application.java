@@ -108,7 +108,7 @@ public class Application {
 			session3.setEndDate(LocalDate.now());
 			courseSessionRepository.save(session3);
 			
-//			course.setDefaultSession(session3);
+			course.setDefaultSession(session3);
 //			courseRepository.save(course);
 			
 				Lecture lecture1 = new Lecture("First Week");

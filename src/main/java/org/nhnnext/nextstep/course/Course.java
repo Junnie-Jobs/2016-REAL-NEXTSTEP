@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import org.nhnnext.nextstep.core.domain.AbstractAuditingEntity;
 import org.nhnnext.nextstep.core.domain.acls.AclImpl;
+import org.nhnnext.nextstep.lecture.Lecture;
 import org.nhnnext.nextstep.session.CourseSession;
 import org.nhnnext.nextstep.session.MasterSession;
 import org.nhnnext.nextstep.session.Session;
@@ -28,7 +30,6 @@ import java.util.List;
 
 @NoArgsConstructor(force = true)
 @Data
-@EqualsAndHashCode(of = "name")
 @Entity
 public class Course extends AbstractAuditingEntity<User, Long> {
 

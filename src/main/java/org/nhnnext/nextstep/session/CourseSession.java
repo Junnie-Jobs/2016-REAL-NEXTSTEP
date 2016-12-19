@@ -10,16 +10,21 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.nhnnext.nextstep.course.Course;
 import org.nhnnext.nextstep.enrollment.Enrollment;
 import org.nhnnext.nextstep.lecture.Lecture;
 import org.nhnnext.nextstep.user.User;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @NoArgsConstructor(force = true)
 @Data
 @Entity
+@ToString(exclude="course")
+@EqualsAndHashCode(of="id")
 @DiscriminatorValue("COURSE")
 public class CourseSession extends Session {
 

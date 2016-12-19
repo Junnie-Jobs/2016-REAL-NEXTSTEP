@@ -15,18 +15,18 @@ import org.nhnnext.nextstep.lecture.Lecture;
 import org.nhnnext.nextstep.user.User;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @NoArgsConstructor(force = true)
 @Data
 @Entity
 @DiscriminatorValue("COURSE")
-@ToString(exclude="course")
-@EqualsAndHashCode(of="id")
 public class CourseSession extends Session {
-	
+
+    public CourseSession(String name) {
+        this.name = name;
+    }
+
     @NotEmpty
     private String name;
     
@@ -34,8 +34,8 @@ public class CourseSession extends Session {
     // [1][2][5][4][3]
     private LocalDate startDate;
     private LocalDate endDate;
-    
-	@OneToMany(mappedBy = "courseSession")
+
+    @OneToMany(mappedBy = "courseSession")
 //	@OrderColumn(name = "lecture_order")
 	private List<Lecture> lectures;
 
@@ -54,10 +54,4 @@ public class CourseSession extends Session {
                 .collect(Collectors.toList());
     }
     
-    public CourseSession(String name) {
-        this.name = name;
-    }
-    
-
-
 }

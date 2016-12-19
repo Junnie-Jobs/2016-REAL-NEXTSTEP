@@ -1,16 +1,10 @@
 package org.nhnnext.nextstep.course;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Transient;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import org.nhnnext.nextstep.core.domain.AbstractAuditingEntity;
 import org.nhnnext.nextstep.core.domain.acls.AclImpl;
 import org.nhnnext.nextstep.session.CourseSession;
@@ -26,12 +20,15 @@ import org.springframework.security.acls.model.Acl;
 import org.springframework.security.acls.model.MutableAcl;
 import org.springframework.security.acls.model.Sid;
 import org.springframework.security.core.Authentication;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @NoArgsConstructor(force = true)
 @Data
+@EqualsAndHashCode(of = "name")
 @Entity
 public class Course extends AbstractAuditingEntity<User, Long> {
 
@@ -39,13 +36,16 @@ public class Course extends AbstractAuditingEntity<User, Long> {
     private String name;
 
     private String description;
+    
+    @OneToOne
+	private CourseSession defaultSession;
+    
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "course")
+	private MasterSession masterSession;
 
     @Column(unique = true)
     @ManyToMany
     private final List<Instructor> instructors = new ArrayList<>();
-    
-	@OneToOne
-	private CourseSession defaultSession;
 
     public List<Instructor> getInstructors() {
         if (getCreatedBy() == null) {
@@ -54,20 +54,21 @@ public class Course extends AbstractAuditingEntity<User, Long> {
 
         return Collections.unmodifiableList(Collections.singletonList((Instructor) getCreatedBy()));
     }
+    
+    public Course(MasterSession masterSession) {
+		this.masterSession = masterSession;
+	}
 
 //    @Column(unique = true)
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course", orphanRemoval = true)
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "course")//(mappedBy = "course", fetch = FetchType.LAZY)
 //    @Cascade(CascadeType.ALL)
-    private final List<Session> sessions = new ArrayList<>();
+    private final List<CourseSession> sessions = new ArrayList<>();
 
     public void addToSessions(CourseSession session) {
         this.getSessions().add(session);
         session.setCourse(this);
     }
-
-    //    @OneToOne(cascade = CascadeType.ALL, mappedBy = "course")
-//    private MasterSession masterSession;
 
     public boolean isInstructor(Authentication authentication) {
         return getInstructors().contains(AuthenticationUtils.getUser(authentication));
@@ -95,9 +96,4 @@ public class Course extends AbstractAuditingEntity<User, Long> {
         acl.insertAce(acl.getEntries().size(), BasePermission.DELETE, new GrantedAuthoritySid(GrantedAuthorities.COURSE_INSTRUCTOR), true);
         return acl;
     }
-    
-    public Course(MasterSession masterSession){
-    	this.getSessions().add(masterSession);
-    }
-
 }

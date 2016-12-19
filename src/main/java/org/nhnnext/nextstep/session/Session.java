@@ -1,15 +1,14 @@
 package org.nhnnext.nextstep.session;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Transient;
 import org.nhnnext.nextstep.core.domain.AbstractAuditingEntity;
+import org.nhnnext.nextstep.core.domain.AbstractEntity;
 import org.nhnnext.nextstep.core.domain.acls.AclImpl;
 import org.nhnnext.nextstep.course.Course;
+import org.nhnnext.nextstep.user.AuthenticationUtils;
 import org.nhnnext.nextstep.user.GrantedAuthorities;
 import org.nhnnext.nextstep.user.User;
 import org.springframework.security.acls.domain.BasePermission;
@@ -20,49 +19,47 @@ import org.springframework.security.acls.model.Sid;
 import org.springframework.security.core.Authentication;
 import org.springframework.util.Assert;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import lombok.Data;
-
-//@NoArgsConstructor(force = true)
+@NoArgsConstructor(force = true)
 @Data
 @MappedSuperclass
-// @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Session extends AbstractAuditingEntity<User, Long> {
 
-	//  @Cascade(CascadeType.ALL)
-	//  @JoinColumn(name="COURSE_ID")
-	  @ManyToOne(cascade = CascadeType.REFRESH, optional = false) //(fetch = FetchType.EAGER) //(cascade = CascadeType.PERSIST)//(optional = false)
-	  private Course course;
-	  
-	public boolean isInstructor(Authentication authentication) {
-		Assert.notNull(getCourse());
-		return getCourse().isInstructor(authentication);
-	}
+    @ManyToOne(cascade = CascadeType.REFRESH, optional = false) //(fetch = FetchType.EAGER) //(cascade = CascadeType.PERSIST)//(optional = false)
+//    @Cascade(CascadeType.ALL)
+//    @JoinColumn(name="COURSE_ID")
+    private Course course;
 
-	@JsonIgnore
-	@Transient
-	public Acl getAcl() {
-		MutableAcl acl = new AclImpl();
-		acl.insertAce(acl.getEntries().size(), BasePermission.READ,
-				new GrantedAuthoritySid(GrantedAuthorities.ROLE_ANONYMOUS), true);
-		acl.insertAce(acl.getEntries().size(), BasePermission.CREATE,
-				new GrantedAuthoritySid(GrantedAuthorities.COURSE_INSTRUCTOR), true);
-		acl.insertAce(acl.getEntries().size(), BasePermission.WRITE,
-				new GrantedAuthoritySid(GrantedAuthorities.COURSE_INSTRUCTOR), true);
-		acl.insertAce(acl.getEntries().size(), BasePermission.DELETE,
-				new GrantedAuthoritySid(GrantedAuthorities.COURSE_INSTRUCTOR), true);
-		return acl;
-	}
 
-	@JsonIgnore
-	@Transient
-	public List<Sid> getSids(Authentication authentication) {
-		List<Sid> sids = new ArrayList<>();
+    public boolean isInstructor(Authentication authentication) {
+        Assert.notNull(getCourse());
+        return getCourse().isInstructor(authentication);
+    }
 
-		if (isInstructor(authentication)) {
-			sids.add(new GrantedAuthoritySid(GrantedAuthorities.COURSE_INSTRUCTOR));
-		}
-		return sids;
-	}
+    @JsonIgnore
+    @Transient
+    public List<Sid> getSids(Authentication authentication) {
+        List<Sid> sids = new ArrayList<>();
+
+        if (isInstructor(authentication)) {
+            sids.add(new GrantedAuthoritySid(GrantedAuthorities.COURSE_INSTRUCTOR));
+        }
+
+        return sids;
+    }
+
+    @JsonIgnore
+    @Transient
+    public Acl getAcl() {
+        MutableAcl acl = new AclImpl();
+        acl.insertAce(acl.getEntries().size(), BasePermission.READ, new GrantedAuthoritySid(GrantedAuthorities.ROLE_ANONYMOUS), true);
+        acl.insertAce(acl.getEntries().size(), BasePermission.CREATE, new GrantedAuthoritySid(GrantedAuthorities.COURSE_INSTRUCTOR), true);
+        acl.insertAce(acl.getEntries().size(), BasePermission.WRITE, new GrantedAuthoritySid(GrantedAuthorities.COURSE_INSTRUCTOR), true);
+        acl.insertAce(acl.getEntries().size(), BasePermission.DELETE, new GrantedAuthoritySid(GrantedAuthorities.COURSE_INSTRUCTOR), true);
+        return acl;
+    }
 }

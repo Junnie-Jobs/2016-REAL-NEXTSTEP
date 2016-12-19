@@ -12,6 +12,7 @@ import org.nhnnext.nextstep.lesson.LessonRepository;
 import org.nhnnext.nextstep.session.CourseSession;
 import org.nhnnext.nextstep.session.CourseSessionRepository;
 import org.nhnnext.nextstep.session.MasterSession;
+import org.nhnnext.nextstep.session.MasterSessionRepository;
 import org.nhnnext.nextstep.session.Session;
 import org.nhnnext.nextstep.user.Instructor;
 import org.nhnnext.nextstep.user.User;
@@ -20,6 +21,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.ReflectionUtils;
 
 @SpringBootApplication
@@ -32,7 +36,7 @@ public class Application {
 	
 	@Bean
 	public CommandLineRunner demo(LectureRepository lectureRepository, UserRepository userRepository,
-			CourseRepository courseRepository, CourseSessionRepository courseSessionRepository, LessonRepository lessonRepository, EnrollmentRepository enrollmentRepository) {
+			CourseRepository courseRepository, MasterSessionRepository masterSessionRepository,CourseSessionRepository courseSessionRepository, LessonRepository lessonRepository, EnrollmentRepository enrollmentRepository) {
 		return (args) -> {
 
 			Field usernameField = ReflectionUtils.findField(User.class, "username");
@@ -71,27 +75,27 @@ public class Application {
 			professor1.setAvatarUrl("https://avatars2.githubusercontent.com/u/520500?v=3&s=400");
 			professor1.setEmail("javajigi@naver.com");
 			userRepository.save(professor1);
+//			
+			SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(professor1.getName(), professor1.getPassword(), professor1.getAuthorities()));
 			
 			MasterSession masterSession = new MasterSession("JWP-master");
 			Course course = new Course(masterSession);
 			course.setName("jwp-basic");
-			course.getInstructors().add(professor1);
-			courseRepository.save(course);
-		
+			course.setCreatedBy(professor1);
+//			course.getInstructors().add(professor1);
 			masterSession.setCourse(course);
-			courseSessionRepository.save(masterSession);
-			
+			courseRepository.save(course);			
+			masterSessionRepository.save(masterSession);
+//			
 			Lecture lecture0 = new Lecture("orientation");
 			lectureRepository.save(lecture0);
 			lecture0.setMasterSession(masterSession);
 			lectureRepository.save(lecture0);
 			
 			CourseSession session1 = new CourseSession("2016-01-JWP");
-			courseSessionRepository.save(session1);
 			session1.setCourse(course);
-
 			courseSessionRepository.save(session1);
-			
+
 			CourseSession session2 = new CourseSession("2016-02-JWP");
 			session2.setCourse(course);
 			courseSessionRepository.save(session2);
@@ -99,10 +103,13 @@ public class Application {
 			CourseSession session3 = new CourseSession("2016-03-JWP");
 			session3.setCourse(course);
 			courseSessionRepository.save(session3);
-			
+//			
 			session3.setStartDate(LocalDate.now());
 			session3.setEndDate(LocalDate.now());
 			courseSessionRepository.save(session3);
+			
+//			course.setDefaultSession(session3);
+//			courseRepository.save(course);
 			
 				Lecture lecture1 = new Lecture("First Week");
 				lecture1.setCourseSession(session3);
@@ -151,9 +158,6 @@ public class Application {
 					Lesson lesson9 = new Lesson("angular");
 					lesson9.setLecture(lecture3);
 					lessonRepository.save(lesson9);
-			
-					course.setDefaultSession(session3);
-					courseRepository.save(course);
 					
 					Enrollment e1 = new Enrollment(session3, student1);
 					e1.setStatus(e1.getStatus().APPROVED);					
@@ -165,7 +169,7 @@ public class Application {
 					
 					Enrollment e3 = new Enrollment(session3, student3);
 					enrollmentRepository.save(e3);
-					
+//					
 					
 			
 					

@@ -1,8 +1,8 @@
 package org.nhnnext.nextstep.config;
 
 import org.nhnnext.nextstep.core.ClientResources;
-import org.nhnnext.nextstep.core.HttpStatusSuccessHandler;
-import org.nhnnext.nextstep.core.MyAuthorizationCodeAccessTokenProvider;
+import org.nhnnext.nextstep.core.security.HttpStatusSuccessHandler;
+import org.nhnnext.nextstep.core.security.MyAuthorizationCodeAccessTokenProvider;
 import org.nhnnext.nextstep.user.security.SpringDataJpaUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;
@@ -26,6 +26,7 @@ import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.CompositeFilter;
+
 import javax.servlet.Filter;
 import java.util.ArrayList;
 import java.util.List;

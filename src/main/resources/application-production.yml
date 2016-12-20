@@ -1,11 +1,22 @@
-security:
-  oauth2:
-    client:
-      clientId: e707ca2f9a1556499b5a
-      clientSecret: b6489531c45fc304fea057a8421a8e2c2ba5319f
-      accessTokenUri: https://github.com/login/oauth/access_token
-      userAuthorizationUri: https://github.com/login/oauth/authorize
-      clientAuthenticationScheme: form
-    resource:
-      userInfoUri: https://api.github.com/user
-      preferTokenInfo: false
+#security:
+#  oauth2:
+#    client:
+#      clientId: e707ca2f9a1556499b5a
+#      clientSecret: b6489531c45fc304fea057a8421a8e2c2ba5319f
+#      accessTokenUri: https://github.com/login/oauth/access_token
+#      userAuthorizationUri: https://github.com/login/oauth/authorize
+#      clientAuthenticationScheme: form
+#    resource:
+#      userInfoUri: https://api.github.com/user
+#      preferTokenInfo: false
+
+github:
+  client:
+    clientId: e707ca2f9a1556499b5a
+    clientSecret: b6489531c45fc304fea057a8421a8e2c2ba5319f
+    accessTokenUri: https://github.com/login/oauth/access_token
+    userAuthorizationUri: https://github.com/login/oauth/authorize
+    clientAuthenticationScheme: form
+  resource:
+    userInfoUri: https://api.github.com/user
+    preferTokenInfo: false      

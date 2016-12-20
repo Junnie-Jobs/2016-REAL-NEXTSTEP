@@ -15,7 +15,7 @@ public interface SessionExcerpt {
 
     String getDescription();
     
-    ArrayList<Lecture> getLecutres();
+    List<Lecture> getLecutres();
     
     ArrayList<Object> getLecturePos();
     

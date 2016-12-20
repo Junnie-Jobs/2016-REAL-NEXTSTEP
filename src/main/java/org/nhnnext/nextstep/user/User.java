@@ -1,12 +1,20 @@
 package org.nhnnext.nextstep.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.Transient;
+
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.URL;
 
-import javax.persistence.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 @NoArgsConstructor(force = true)
 @RequiredArgsConstructor
@@ -31,7 +39,7 @@ public class User extends AbstractSecurityUser implements OAuth2User {
     @URL
     private String avatarUrl;
 
-    @JsonIgnore
+//    @JsonIgnore
     @Transient
     public String getRole() {
         return GrantedAuthorities.ROLE_USER;

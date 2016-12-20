@@ -8,11 +8,13 @@ import java.util.List;
 @Projection(name = "detail", types = Session.class)
 public interface SessionDetail {
 
-    String getName();
+	String getName();
 
-    String getDescription();
+	String getDescription();
 
-    List<LectureExcerpt> getLectures();
+	List<LectureExcerpt> getLectures();
 
-    Object getLecturePos();
+	Object getLecturePos();
+
+	Session.State getState();
 }

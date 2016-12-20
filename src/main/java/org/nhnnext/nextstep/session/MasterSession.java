@@ -6,13 +6,13 @@ import lombok.NoArgsConstructor;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-//@NoArgsConstructor(force = true)
+@NoArgsConstructor(force = true)
 @Data
 @Entity
 @DiscriminatorValue(SessionType.Values.MASTER)
 public class MasterSession extends Session {
 
-    public MasterSession() {
-        super("jwp-adv", "master");
+    public MasterSession(String name) {
+        super(name, "master");
     }
 }

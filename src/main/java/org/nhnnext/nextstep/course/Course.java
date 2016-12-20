@@ -1,8 +1,12 @@
 package org.nhnnext.nextstep.course;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import org.hibernate.validator.constraints.NotEmpty;
 import org.nhnnext.nextstep.core.domain.AbstractAuditingEntity;
 import org.nhnnext.nextstep.core.domain.acls.AclImpl;
@@ -21,17 +25,23 @@ import org.springframework.security.acls.model.Sid;
 import org.springframework.security.core.Authentication;
 
 import javax.persistence.*;
+
+import java.text.SimpleDateFormat;
 import java.util.*;
 
-//@NoArgsConstructor(force = true)
+@AllArgsConstructor
+@NoArgsConstructor(force = true)
 @Data
 @EqualsAndHashCode(of = "id")
 @Entity
 public class Course extends AbstractAuditingEntity<User, Long> {
 
-    public Course() {
-        addToSessions(new MasterSession());
-        addToSessions(new CourseSession("jwp-2016-01", "default"));
+    public Course(String name) {
+    	Date dt = new Date();
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM"); 
+        addToSessions(new MasterSession(name));
+        addToSessions(new CourseSession(name+"-"+sdf.format(dt).toString(), "default"));
+        this.name = name;
     }
 
     @NotEmpty

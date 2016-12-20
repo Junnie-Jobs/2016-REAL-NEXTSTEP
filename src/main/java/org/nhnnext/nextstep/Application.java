@@ -5,6 +5,7 @@ import java.lang.reflect.Field;
 import org.nhnnext.nextstep.course.Course;
 import org.nhnnext.nextstep.course.CourseRepository;
 import org.nhnnext.nextstep.enrollment.EnrollmentRepository;
+import org.nhnnext.nextstep.lecture.Lecture;
 import org.nhnnext.nextstep.lecture.LectureRepository;
 import org.nhnnext.nextstep.lesson.LessonRepository;
 import org.nhnnext.nextstep.session.CourseSessionRepository;
@@ -71,23 +72,11 @@ public class Application {
 
 			SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(professor1.getName(), professor1.getPassword(), professor1.getAuthorities()));
 			
-			Course course = new Course();
-			course.setName("jwp-basic");
+			Course course = new Course("jwp-basic");
 			course.setCreatedBy(professor1);
-//			course.getInstructors().add(professor1);
-			System.out.println(course.getCreatedBy());
-			System.out.println(course.getInstructors());
 			courseRepository.save(course);
-			
-			
-//			professor1.getCourses().add(course);
-//			masterSession.setCourse(course);
-//				
-//			masterSessionRepository.save(masterSession);
-//			
+
 //			Lecture lecture0 = new Lecture("orientation");
-//			lectureRepository.save(lecture0);
-//			lecture0.setMasterSession(masterSession);
 //			lectureRepository.save(lecture0);
 //			
 //			CourseSession session1 = new CourseSession("2016-01-JWP");

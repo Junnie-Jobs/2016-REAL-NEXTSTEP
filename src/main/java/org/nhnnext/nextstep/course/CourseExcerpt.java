@@ -1,5 +1,6 @@
 package org.nhnnext.nextstep.course;
 
+import org.nhnnext.nextstep.session.SessionDetail;
 import org.nhnnext.nextstep.session.SessionExcerpt;
 import org.nhnnext.nextstep.user.Instructor;
 import org.springframework.data.rest.core.config.Projection;
@@ -13,7 +14,15 @@ public interface CourseExcerpt {
 
     String getName();
 
+    String getDescription();
+
     List<Instructor> getInstructors();
+
+    List<SessionExcerpt> getSessions();
+
+    SessionExcerpt getMasterSession();
+
+    SessionExcerpt getDefaultSession();
     
-    Instructor getCreatedBy();
+
 }

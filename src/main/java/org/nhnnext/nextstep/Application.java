@@ -73,6 +73,7 @@ public class Application {
 			
 			Course course = new Course();
 			course.setName("jwp-basic");
+			courseRepository.save(course);
 //			MasterSession masterSession = new MasterSession();
 ////			masterSession.setName("jwp-basic");
 //			course.addToSessions(masterSession);

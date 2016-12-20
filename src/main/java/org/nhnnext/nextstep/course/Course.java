@@ -31,7 +31,7 @@ public class Course extends AbstractAuditingEntity<User, Long> {
 
     public Course() {
         addToSessions(new MasterSession());
-        addToSessions(new CourseSession("default"));
+        addToSessions(new CourseSession("jwp-2016-01", "default"));
     }
 
     @NotEmpty
@@ -57,8 +57,8 @@ public class Course extends AbstractAuditingEntity<User, Long> {
 //    @Cascade(CascadeType.ALL)
     private final List<Session> sessions = new ArrayList<>();
 
-    public Optional<Session> getSession(String name) {
-        return getSessions().stream().filter(x -> Objects.equals(x.getName(), name)).findFirst();
+    public Optional<Session> getSession(String role) {
+        return getSessions().stream().filter(x -> Objects.equals(x.getRole(), role)).findFirst();
     }
 
     @Transient
@@ -77,9 +77,6 @@ public class Course extends AbstractAuditingEntity<User, Long> {
         getSessions().add(session);
         session.setCourse(this);
     }
-
-    //    @OneToOne(cascade = CascadeType.ALL, mappedBy = "course")
-//    private MasterSession masterSession;
 
     public boolean isInstructor(Authentication authentication) {
         return getInstructors().contains(AuthenticationUtils.getUser(authentication));

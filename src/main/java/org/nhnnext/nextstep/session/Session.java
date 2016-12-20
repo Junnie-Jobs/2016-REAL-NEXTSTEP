@@ -29,9 +29,6 @@ import java.util.List;
 @Data
 @Entity
 @Inheritance
-//@DiscriminatorColumn
-//@MappedSuperclass
-//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Session extends AbstractAuditingEntity<User, Long> {
 
     @Convert(converter = ObjectConverter.class)
@@ -44,8 +41,7 @@ public class Session extends AbstractAuditingEntity<User, Long> {
         UPCOMING, IN_SESSION
     }
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "session")//(mappedBy = "course", fetch = FetchType.LAZY)
-//    @Cascade(CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "session")
     private final List<Lecture> lectures = new ArrayList<>();
 
     public void addToLectures(Lecture lecture) {
@@ -53,18 +49,19 @@ public class Session extends AbstractAuditingEntity<User, Long> {
         lecture.setSession(this);
     }
 
-    @ManyToOne(cascade = CascadeType.REFRESH, optional = false) //(fetch = FetchType.EAGER) //(cascade = CascadeType.PERSIST)//(optional = false)
-//    @Cascade(CascadeType.ALL)
-//    @JoinColumn(name="COURSE_ID")
+    @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
     private Course course;
-
-//    public Session(String name) {
-//        this.name = name;
-//    }
 
     @Column(unique = true, nullable = false)
     private final String name;
-
+    
+    public Session(String name, String role){
+    	this.name = name;
+    	this.role = role;
+    }
+    
+    private String role;
+    
     private String description;
 
     public boolean isInstructor(Authentication authentication) {
@@ -94,4 +91,6 @@ public class Session extends AbstractAuditingEntity<User, Long> {
         acl.insertAce(acl.getEntries().size(), BasePermission.DELETE, new GrantedAuthoritySid(GrantedAuthorities.COURSE_INSTRUCTOR), true);
         return acl;
     }
+    
+  
 }

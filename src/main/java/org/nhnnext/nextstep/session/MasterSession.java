@@ -1,6 +1,7 @@
 package org.nhnnext.nextstep.session;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -12,6 +13,6 @@ import javax.persistence.Entity;
 public class MasterSession extends Session {
 
     public MasterSession() {
-        super("master");
+        super("jwp-adv", "master");
     }
 }

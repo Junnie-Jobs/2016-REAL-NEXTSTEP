@@ -19,6 +19,8 @@ public interface SessionExcerpt {
 	List<LectureExcerpt> getLectures();
 
 	Object getLecturePos();
+	
+	String getRole();
     
 //    List<Lecture> getLecutres();
 //    

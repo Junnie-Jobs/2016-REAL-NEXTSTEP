@@ -14,4 +14,6 @@ public interface CourseExcerpt {
     String getName();
 
     List<Instructor> getInstructors();
+    
+    Instructor getCreatedBy();
 }

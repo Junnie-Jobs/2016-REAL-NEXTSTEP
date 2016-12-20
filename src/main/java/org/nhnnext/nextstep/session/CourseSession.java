@@ -17,7 +17,11 @@ public class CourseSession extends Session {
         super(name);
     }
 
-    private LocalDateTime startDate;
+    public CourseSession(String name, String role) {
+		super(name, role);
+	}
+
+	private LocalDateTime startDate;
     private LocalDateTime endDate;
 
 //    @OneToMany(mappedBy = "session")

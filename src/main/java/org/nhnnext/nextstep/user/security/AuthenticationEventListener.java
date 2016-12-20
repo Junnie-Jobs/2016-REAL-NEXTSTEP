@@ -46,11 +46,14 @@ public class AuthenticationEventListener {
         String username = principalExtractor.extractPrincipal(map).toString();
         User user = userRepository.findByUsername(username).orElse(new User(username));
 
-        if (username.equals("Byeol")) {
-            user = new Instructor(username);
-        }
+       
 
         if (user.isNew()) {
+        	
+        	 if (username.equals("Byeol")) {
+                 user = new Instructor(username);
+             }
+        	 
             user.setName(map.get("name").toString());
             user.setEmail(map.get("email").toString());
             user.setAvatarUrl(map.get("avatar_url").toString());

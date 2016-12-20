@@ -41,12 +41,14 @@ public class Course extends AbstractAuditingEntity<User, Long> {
     @OneToOne
 	private CourseSession defaultSession;
     
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "course")
-	private MasterSession masterSession;
-
-    @Column(unique = true)
-    @ManyToMany
-    private final List<Instructor> instructors = new ArrayList<>();
+//    @Column(unique = true)
+//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private final List<Instructor> instructors = new ArrayList<>();
+    
+//  @Column(unique = true)
+//  @OneToMany(cascade = CascadeType.ALL, mappedBy = "course", orphanRemoval = true)
+    @OneToMany(mappedBy = "course", fetch = FetchType.EAGER, cascade = CascadeType.ALL)//(mappedBy = "course", fetch = FetchType.LAZY)
+    private final List<Session> sessions = new ArrayList<>();
 
     public List<Instructor> getInstructors() {
         if (getCreatedBy() == null) {
@@ -56,20 +58,13 @@ public class Course extends AbstractAuditingEntity<User, Long> {
         return Collections.unmodifiableList(Collections.singletonList((Instructor) getCreatedBy()));
     }
     
-    public Course(MasterSession masterSession) {
-		this.masterSession = masterSession;
-	}
 
-//    @Column(unique = true)
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course", orphanRemoval = true)
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "course")//(mappedBy = "course", fetch = FetchType.LAZY)
-//    @Cascade(CascadeType.ALL)
-    private final List<CourseSession> sessions = new ArrayList<>();
 
-    public void addToSessions(CourseSession session) {
+    public void addToSessions(Session session) {
         this.getSessions().add(session);
         session.setCourse(this);
     }
+    
 
     public boolean isInstructor(Authentication authentication) {
         return getInstructors().contains(AuthenticationUtils.getUser(authentication));

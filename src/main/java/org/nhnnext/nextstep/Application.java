@@ -1,20 +1,15 @@
 package org.nhnnext.nextstep;
 import java.lang.reflect.Field;
-import java.time.LocalDate;
+
 import org.nhnnext.nextstep.course.Course;
 import org.nhnnext.nextstep.course.CourseRepository;
-import org.nhnnext.nextstep.enrollment.Enrollment;
 import org.nhnnext.nextstep.enrollment.EnrollmentRepository;
-import org.nhnnext.nextstep.lecture.Lecture;
 import org.nhnnext.nextstep.lecture.LectureRepository;
-import org.nhnnext.nextstep.lesson.Lesson;
 import org.nhnnext.nextstep.lesson.LessonRepository;
-import org.nhnnext.nextstep.session.CourseSession;
 import org.nhnnext.nextstep.session.CourseSessionRepository;
 import org.nhnnext.nextstep.session.MasterSession;
-import org.nhnnext.nextstep.session.MasterSessionRepository;
-import org.nhnnext.nextstep.session.Session;
 import org.nhnnext.nextstep.user.Instructor;
+import org.nhnnext.nextstep.user.InstructorRepository;
 import org.nhnnext.nextstep.user.User;
 import org.nhnnext.nextstep.user.UserRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -22,7 +17,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.ReflectionUtils;
 
@@ -35,8 +29,8 @@ public class Application {
 	
 	
 	@Bean
-	public CommandLineRunner demo(LectureRepository lectureRepository, UserRepository userRepository,
-			CourseRepository courseRepository, MasterSessionRepository masterSessionRepository,CourseSessionRepository courseSessionRepository, LessonRepository lessonRepository, EnrollmentRepository enrollmentRepository) {
+	public CommandLineRunner demo(LectureRepository lectureRepository, UserRepository userRepository, InstructorRepository instructorRepository,
+			CourseRepository courseRepository, CourseSessionRepository courseSessionRepository, LessonRepository lessonRepository, EnrollmentRepository enrollmentRepository) {
 		return (args) -> {
 
 			Field usernameField = ReflectionUtils.findField(User.class, "username");
@@ -74,17 +68,23 @@ public class Application {
 			professor1.setName("jaesung");
 			professor1.setAvatarUrl("https://avatars2.githubusercontent.com/u/520500?v=3&s=400");
 			professor1.setEmail("javajigi@naver.com");
-			userRepository.save(professor1);
-//			
+			instructorRepository.save(professor1);
+
 			SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(professor1.getName(), professor1.getPassword(), professor1.getAuthorities()));
 			
-			MasterSession masterSession = new MasterSession("JWP-master");
-			Course course = new Course(masterSession);
+			Course course = new Course();
 			course.setName("jwp-basic");
-			course.setCreatedBy(professor1);
-//			course.getInstructors().add(professor1);
-			masterSession.setCourse(course);
-			courseRepository.save(course);			
+			MasterSession masterSession = new MasterSession();
+			masterSession.setName("jwp-basic");
+			course.addToSessions(masterSession);
+//			course.setCreatedBy(professor1);
+			instructorRepository.save(professor1);
+			courseRepository.save(course);
+			
+			
+//			professor1.getCourses().add(course);
+//			masterSession.setCourse(course);
+//				
 //			masterSessionRepository.save(masterSession);
 //			
 //			Lecture lecture0 = new Lecture("orientation");

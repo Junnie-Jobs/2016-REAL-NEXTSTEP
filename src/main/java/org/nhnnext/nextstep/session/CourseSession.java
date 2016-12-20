@@ -27,16 +27,8 @@ import lombok.ToString;
 @EqualsAndHashCode(of="id")
 @DiscriminatorValue("COURSE")
 public class CourseSession extends Session {
-
-    public CourseSession(String name) {
-        this.name = name;
-    }
-
-    @NotEmpty
-    private String name;
-    
-    private String pos;
-    // [1][2][5][4][3]
+   
+    private String pos; // [1][2][5][4][3]
     private LocalDate startDate;
     private LocalDate endDate;
 

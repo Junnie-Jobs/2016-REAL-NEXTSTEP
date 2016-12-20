@@ -6,9 +6,18 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+
+import org.nhnnext.nextstep.course.Course;
 
 @NoArgsConstructor(force = true)
 @Data
@@ -28,9 +37,9 @@ public class Instructor extends User {
         return GrantedAuthorities.ROLE_INSTRUCTOR;
     }
 
-    //    @Column(unique = true)
-//    @ManyToMany(mappedBy = "instructors")
-//    @OneToMany(mappedBy = "createdBy")
+//  @OneToMany(mappedBy = "createdBy")
+//    @Column(unique = true)
+//    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "instructors")
 //    private final List<Course> courses = new ArrayList<>();
 
     //    private final List<Session> sessions = new ArrayList<>();

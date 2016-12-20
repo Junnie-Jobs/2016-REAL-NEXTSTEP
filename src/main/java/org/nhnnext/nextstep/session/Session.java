@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.nhnnext.nextstep.core.domain.AbstractAuditingEntity;
 import org.nhnnext.nextstep.core.domain.AbstractEntity;
 import org.nhnnext.nextstep.core.domain.acls.AclImpl;
@@ -25,14 +26,17 @@ import java.util.List;
 
 @NoArgsConstructor(force = true)
 @Data
-@MappedSuperclass
+@Entity
+//@MappedSuperclass
 //@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Session extends AbstractAuditingEntity<User, Long> {
 
-    @ManyToOne(cascade = CascadeType.REFRESH, optional = false) //(fetch = FetchType.EAGER) //(cascade = CascadeType.PERSIST)//(optional = false)
-//    @Cascade(CascadeType.ALL)
-//    @JoinColumn(name="COURSE_ID")
+	@JoinColumn(name="COURSE_ID")
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch=FetchType.LAZY, optional = false) //optional = false (fetch = FetchType.EAGER) //(cascade = CascadeType.PERSIST)//(optional = false)
     private Course course;
+    
+    @NotEmpty
+    private String name;
 
 
     public boolean isInstructor(Authentication authentication) {

@@ -59,7 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private Filter ssoFilter() {
 		CompositeFilter filter = new CompositeFilter();
 		List<Filter> filters = new ArrayList<>();
-		filters.add(ssoFilter(github(), "/login/github"));
+		filters.add(ssoFilter(github(), "/api/login/github"));
 		filter.setFilters(filters);
 		return filter;
 	}

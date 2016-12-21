@@ -21,7 +21,7 @@ import org.springframework.util.Assert;
 @EqualsAndHashCode(of = "id")
 @ToString(of = "id")
 @Entity
-public class Lecture extends AbstractEntity {
+public class Lecture extends AbstractCourseEntity {
 
     @Convert(converter = ObjectConverter.class)
     private Object pos = new ArrayList<Object>();

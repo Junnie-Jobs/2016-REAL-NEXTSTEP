@@ -39,15 +39,4 @@ public class Lesson extends AbstractCourseEntity {
         return getLecture().isInstructor(authentication);
     }
     
-//    @JsonIgnore
-//    @Transient
-//    public Acl getAcl() {
-//        MutableAcl acl = new AclImpl();
-//        acl.insertAce(acl.getEntries().size(), BasePermission.READ, new GrantedAuthoritySid(GrantedAuthorities.ROLE_ANONYMOUS), true);
-//        acl.insertAce(acl.getEntries().size(), BasePermission.CREATE, new GrantedAuthoritySid(GrantedAuthorities.ROLE_INSTRUCTOR), true);
-//        acl.insertAce(acl.getEntries().size(), BasePermission.WRITE, new GrantedAuthoritySid(GrantedAuthorities.COURSE_INSTRUCTOR), true);
-//        acl.insertAce(acl.getEntries().size(), BasePermission.DELETE, new GrantedAuthoritySid(GrantedAuthorities.COURSE_INSTRUCTOR), true);
-//        return acl;
-//    }
-
 }

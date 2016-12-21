@@ -29,6 +29,7 @@ import lombok.RequiredArgsConstructor;
 @DiscriminatorValue(SessionType.Values.COURSE)
 public class CourseSession extends Session {
 
+
     //    @Column(unique = true, nullable = false)
     @NotNull
     private final String name;
@@ -46,7 +47,7 @@ public class CourseSession extends Session {
 
     private LocalDateTime endDate;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "session")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "session")
     private final List<Enrollment> enrollments = new ArrayList<>();
 
     public boolean isEnrolled(Authentication authentication) {
@@ -72,4 +73,5 @@ public class CourseSession extends Session {
 //                .map(Enrollment::getUser)
 //                .collect(Collectors.toList());
 //    }
+
 }

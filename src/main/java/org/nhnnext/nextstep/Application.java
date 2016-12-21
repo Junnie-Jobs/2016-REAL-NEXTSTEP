@@ -78,16 +78,16 @@ public class Application {
 			course.setCreatedBy(professor1);
 			courseRepository.save(course);
 			
-			Enrollment e1 = new Enrollment((CourseSession) course.getDefaultSession(), student1);
-			e1.setStatus(e1.getStatus().APPROVED);					
-			enrollmentRepository.save(e1);
-			
-			Enrollment e2 = new Enrollment((CourseSession) course.getDefaultSession(), student2);
-			e2.setStatus(e2.getStatus().APPROVED);
-			enrollmentRepository.save(e2);
+//			Enrollment e1 = new Enrollment((CourseSession) course.getDefaultSession(), student1);
+//			e1.setStatus(e1.getStatus().APPROVED);					
+//			enrollmentRepository.save(e1);
 //			
-			Enrollment e3 = new Enrollment((CourseSession) course.getDefaultSession(), student3);
-			enrollmentRepository.save(e3);
+//			Enrollment e2 = new Enrollment((CourseSession) course.getDefaultSession(), student2);
+//			e2.setStatus(e2.getStatus().APPROVED);
+//			enrollmentRepository.save(e2);
+////			
+//			Enrollment e3 = new Enrollment((CourseSession) course.getDefaultSession(), student3);
+//			enrollmentRepository.save(e3);
 
 //			Lecture lecture0 = new Lecture("orientation");
 //			lectureRepository.save(lecture0);

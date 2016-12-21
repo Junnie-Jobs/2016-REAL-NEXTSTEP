@@ -1,11 +1,24 @@
 package org.nhnnext.nextstep.session;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import java.time.LocalDateTime;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.nhnnext.nextstep.course.Course;
+import org.nhnnext.nextstep.enrollment.Enrollment;
+import org.nhnnext.nextstep.lecture.Lecture;
+import org.nhnnext.nextstep.user.User;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(force = true)
 @Data
@@ -21,12 +34,14 @@ public class CourseSession extends Session {
 		super(name, role);
 	}
 
-	private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    @OneToMany(mappedBy = "session")
+    private final List<Enrollment> enrollments = new ArrayList<>();
 
-//    @OneToMany(mappedBy = "session")
-//    private final List<Enrollment> enrollments = new ArrayList<>();
-//
+//	public void addToLectures(Lecture lecture) {
+//		lectures.add(lecture);
+//		lecture.setCourseSession(this);
+//	}
+	
 //    public List<User> getParticipants() {
 //        return this.enrollments.stream()
 //                .filter(Enrollment::isApproved)

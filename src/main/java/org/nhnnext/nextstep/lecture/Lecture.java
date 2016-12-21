@@ -18,7 +18,7 @@ import java.util.List;
 public class Lecture extends AbstractEntity {
 
     @Convert(converter = ObjectConverter.class)
-    private Object sessionPos = new ArrayList<Object>();
+    private Object pos = new ArrayList<Object>();
 
     @NotEmpty
     private String name;

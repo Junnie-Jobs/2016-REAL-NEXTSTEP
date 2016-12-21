@@ -4,10 +4,12 @@ import java.lang.reflect.Field;
 
 import org.nhnnext.nextstep.course.Course;
 import org.nhnnext.nextstep.course.CourseRepository;
+import org.nhnnext.nextstep.enrollment.Enrollment;
 import org.nhnnext.nextstep.enrollment.EnrollmentRepository;
 import org.nhnnext.nextstep.lecture.Lecture;
 import org.nhnnext.nextstep.lecture.LectureRepository;
 import org.nhnnext.nextstep.lesson.LessonRepository;
+import org.nhnnext.nextstep.session.CourseSession;
 import org.nhnnext.nextstep.session.CourseSessionRepository;
 import org.nhnnext.nextstep.user.Instructor;
 import org.nhnnext.nextstep.user.InstructorRepository;
@@ -75,6 +77,17 @@ public class Application {
 			Course course = new Course("jwp-basic");
 			course.setCreatedBy(professor1);
 			courseRepository.save(course);
+			
+			Enrollment e1 = new Enrollment((CourseSession) course.getDefaultSession(), student1);
+			e1.setStatus(e1.getStatus().APPROVED);					
+			enrollmentRepository.save(e1);
+			
+			Enrollment e2 = new Enrollment((CourseSession) course.getDefaultSession(), student2);
+			e2.setStatus(e2.getStatus().APPROVED);
+			enrollmentRepository.save(e2);
+//			
+			Enrollment e3 = new Enrollment((CourseSession) course.getDefaultSession(), student3);
+			enrollmentRepository.save(e3);
 
 //			Lecture lecture0 = new Lecture("orientation");
 //			lectureRepository.save(lecture0);
@@ -146,16 +159,7 @@ public class Application {
 //					lesson9.setLecture(lecture3);
 //					lessonRepository.save(lesson9);
 //					
-//					Enrollment e1 = new Enrollment(session3, student1);
-//					e1.setStatus(e1.getStatus().APPROVED);					
-//					enrollmentRepository.save(e1);
-//					
-//					Enrollment e2 = new Enrollment(session3, student2);
-//					e2.setStatus(e2.getStatus().APPROVED);
-//					enrollmentRepository.save(e2);
-//					
-//					Enrollment e3 = new Enrollment(session3, student3);
-//					enrollmentRepository.save(e3);
+
 //					
 					
 			

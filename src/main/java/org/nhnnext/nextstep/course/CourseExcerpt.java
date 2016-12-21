@@ -1,5 +1,6 @@
 package org.nhnnext.nextstep.course;
 
+import org.nhnnext.nextstep.enrollment.EnrollmentExcerpt;
 import org.nhnnext.nextstep.session.SessionDetail;
 import org.nhnnext.nextstep.session.SessionExcerpt;
 import org.nhnnext.nextstep.user.Instructor;
@@ -23,6 +24,8 @@ public interface CourseExcerpt {
     SessionExcerpt getMasterSession();
 
     SessionExcerpt getDefaultSession();
+    
+
     
 
 }

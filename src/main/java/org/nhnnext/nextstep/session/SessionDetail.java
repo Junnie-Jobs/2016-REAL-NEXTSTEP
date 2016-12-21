@@ -17,4 +17,6 @@ public interface SessionDetail {
 	Object getLecturePos();
 
 	Session.State getState();
+	
+	CourseSession getStartDate();
 }

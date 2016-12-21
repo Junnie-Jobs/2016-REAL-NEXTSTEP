@@ -1,9 +1,12 @@
 package org.nhnnext.nextstep.enrollment;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.nhnnext.nextstep.core.domain.AbstractEntity;
 import org.nhnnext.nextstep.session.CourseSession;
+import org.nhnnext.nextstep.session.Session;
 import org.nhnnext.nextstep.user.User;
 
 import javax.persistence.Entity;
@@ -11,11 +14,14 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Data
-@ToString(callSuper = true)
-public abstract class Enrollment extends AbstractEntity {
+//@ToString(callSuper = true)
+@ToString(exclude="session")
+@EqualsAndHashCode(of="id")
+public class Enrollment extends AbstractEntity {
 
     @ManyToOne(optional = false)
     private final CourseSession session;
@@ -33,7 +39,7 @@ public abstract class Enrollment extends AbstractEntity {
         this(null, null);
     }
 
-    private Status status;
+	private Status status;
 
     public static enum Status {
         PENDING,

@@ -21,6 +21,8 @@ import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,10 +34,13 @@ import java.util.List;
 public class Session extends AbstractAuditingEntity<User, Long> {
 
     @Convert(converter = ObjectConverter.class)
-    private Object lecturePos = new ArrayList<Object>();
+    private Object pos = new ArrayList<Object>();
 
     @NotNull
     private State state = State.IN_SESSION;
+    
+	private LocalDateTime startDate;
+    private LocalDateTime endDate;
 
     public enum State {
         UPCOMING, IN_SESSION

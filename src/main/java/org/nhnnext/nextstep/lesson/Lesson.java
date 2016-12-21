@@ -4,7 +4,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.NotEmpty;
 import org.nhnnext.nextstep.core.domain.AbstractEntity;
 import org.nhnnext.nextstep.lecture.Lecture;

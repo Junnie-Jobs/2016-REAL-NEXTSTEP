@@ -21,7 +21,8 @@ public interface SessionExcerpt {
 	
 	String getRole();
 	
-	ArrayList<Object> getPos();
+//	ArrayList<Object> getPos();
+	Object getPos();
 	
 	LocalDateTime getStartDate();
 	LocalDateTime getEndDate();

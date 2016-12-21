@@ -15,5 +15,6 @@ public interface LectureExcerpt {
 
     List<LessonExcerpt> getLessons();
     
-    ArrayList<Object> getPos();
+//    ArrayList<Object> getPos();
+    Object getPos();
 }

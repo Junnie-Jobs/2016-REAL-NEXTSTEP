@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.nhnnext.nextstep.core.domain.AbstractAuditingEntity;
 import org.nhnnext.nextstep.core.domain.acls.AclImpl;
+import org.nhnnext.nextstep.enrollment.Enrollment;
 import org.nhnnext.nextstep.session.CourseSession;
 import org.nhnnext.nextstep.session.MasterSession;
 import org.nhnnext.nextstep.session.Session;
@@ -82,7 +83,7 @@ public class Course extends AbstractAuditingEntity<User, Long> {
     public Session getDefaultSession() {
         return getSession("default").orElseGet(null);
     }
-
+    
     public void addToSessions(Session session) {
         getSessions().add(session);
         session.setCourse(this);

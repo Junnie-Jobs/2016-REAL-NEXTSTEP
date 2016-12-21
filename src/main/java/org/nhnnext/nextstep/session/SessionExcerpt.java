@@ -24,9 +24,5 @@ public interface SessionExcerpt {
 //	ArrayList<Object> getPos();
 	Object getPos();
 	
-	LocalDateTime getStartDate();
-	LocalDateTime getEndDate();
-	
-//	List<EnrollmentExcerpt> getEnrollments();
-    
+	    
 }

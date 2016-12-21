@@ -45,9 +45,6 @@ public class Session extends AbstractAuditingEntity<User, Long> {
     @NotNull
     private State state = State.IN_SESSION;
     
-	private LocalDateTime startDate;
-    private LocalDateTime endDate;
-
     public enum State {
         UPCOMING, IN_SESSION
     }
@@ -79,7 +76,7 @@ public class Session extends AbstractAuditingEntity<User, Long> {
         Assert.notNull(getCourse());
         return getCourse().isInstructor(authentication);
     }
-
+    
     @JsonIgnore
     @Transient
     public List<Sid> getSids(Authentication authentication) {

@@ -1,5 +1,6 @@
 package org.nhnnext.nextstep.session;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.DiscriminatorValue;
@@ -22,6 +23,9 @@ public class CourseSession extends Session {
     public CourseSession(String name, String role) {
 		super(name, role);
 	}
+    
+	private LocalDateTime startDate;
+    private LocalDateTime endDate;
 
     @OneToMany(mappedBy = "session")
     private final List<Enrollment> enrollments = new ArrayList<>();

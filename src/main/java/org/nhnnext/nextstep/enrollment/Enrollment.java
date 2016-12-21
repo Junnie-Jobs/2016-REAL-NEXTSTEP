@@ -1,11 +1,9 @@
 package org.nhnnext.nextstep.enrollment;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.nhnnext.nextstep.core.domain.AbstractAuditingEntity;
+import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import org.nhnnext.nextstep.core.domain.acls.AclImpl;
 import org.nhnnext.nextstep.course.domain.AbstractCourseEntity;
 import org.nhnnext.nextstep.session.CourseSession;
@@ -16,14 +14,13 @@ import org.springframework.security.acls.domain.BasePermission;
 import org.springframework.security.acls.domain.GrantedAuthoritySid;
 import org.springframework.security.acls.model.Acl;
 import org.springframework.security.acls.model.MutableAcl;
-import org.springframework.security.acls.model.Sid;
 import org.springframework.security.core.Authentication;
 import org.springframework.util.Assert;
-
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @NoArgsConstructor(force = true)
 @Data

@@ -8,6 +8,4 @@ public interface LessonExcerpt {
     Long getId();
 
     String getName();
-    
-    String getContent();
 }

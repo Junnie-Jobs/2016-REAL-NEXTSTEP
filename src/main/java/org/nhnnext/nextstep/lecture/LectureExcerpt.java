@@ -8,11 +8,11 @@ import java.util.List;
 @Projection(name = "excerpt", types = Lecture.class)
 public interface LectureExcerpt {
 
-	Long getId();
+    Long getId();
 
-	String getName();
+    String getName();
 
-	List<LessonExcerpt> getLessons();
+    List<LessonExcerpt> getLessons();
 
-	Object getPos();
+    Object getPos();
 }

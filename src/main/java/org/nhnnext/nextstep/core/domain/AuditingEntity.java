@@ -1,4 +1,3 @@
-
 package org.nhnnext.nextstep.core.domain;
 
 import org.springframework.security.acls.model.Acl;

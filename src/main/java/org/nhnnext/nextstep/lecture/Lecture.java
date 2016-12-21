@@ -8,6 +8,7 @@ import lombok.ToString;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.nhnnext.nextstep.core.ObjectConverter;
 import org.nhnnext.nextstep.core.domain.AbstractEntity;
+import org.nhnnext.nextstep.course.domain.AbstractCourseEntity;
 import org.nhnnext.nextstep.lesson.Lesson;
 import org.nhnnext.nextstep.session.Session;
 import org.springframework.security.core.Authentication;

@@ -26,6 +26,6 @@ public interface SessionExcerpt {
 	LocalDateTime getStartDate();
 	LocalDateTime getEndDate();
 	
-	List<EnrollmentExcerpt> getEnrollments();
+//	List<EnrollmentExcerpt> getEnrollments();
     
 }

@@ -1,18 +1,15 @@
 package org.nhnnext.nextstep.enrollment;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.nhnnext.nextstep.core.domain.AbstractEntity;
-import org.nhnnext.nextstep.session.CourseSession;
-import org.nhnnext.nextstep.session.Session;
-import org.nhnnext.nextstep.user.User;
-
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import org.nhnnext.nextstep.core.domain.AbstractEntity;
+import org.nhnnext.nextstep.session.CourseSession;
+import org.nhnnext.nextstep.user.User;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 
 @Entity

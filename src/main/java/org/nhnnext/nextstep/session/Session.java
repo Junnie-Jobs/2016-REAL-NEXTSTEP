@@ -2,12 +2,16 @@ package org.nhnnext.nextstep.session;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
+
 import org.nhnnext.nextstep.core.ObjectConverter;
 import org.nhnnext.nextstep.core.domain.AbstractAuditingEntity;
 import org.nhnnext.nextstep.core.domain.acls.AclImpl;
 import org.nhnnext.nextstep.course.Course;
+import org.nhnnext.nextstep.enrollment.Enrollment;
 import org.nhnnext.nextstep.lecture.Lecture;
 import org.nhnnext.nextstep.user.GrantedAuthorities;
 import org.nhnnext.nextstep.user.User;
@@ -31,6 +35,8 @@ import java.util.List;
 @Data
 @Entity
 @Inheritance
+@ToString(exclude="course")
+@EqualsAndHashCode(of="id")
 public class Session extends AbstractAuditingEntity<User, Long> {
 
     @Convert(converter = ObjectConverter.class)

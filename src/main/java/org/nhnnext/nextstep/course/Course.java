@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
-
 import org.hibernate.validator.constraints.NotEmpty;
 import org.nhnnext.nextstep.core.domain.AbstractAuditingEntity;
 import org.nhnnext.nextstep.core.domain.acls.AclImpl;
@@ -27,9 +25,7 @@ import org.springframework.security.acls.model.Acl;
 import org.springframework.security.acls.model.MutableAcl;
 import org.springframework.security.acls.model.Sid;
 import org.springframework.security.core.Authentication;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

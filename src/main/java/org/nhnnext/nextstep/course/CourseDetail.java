@@ -10,6 +10,8 @@ import org.springframework.data.rest.core.config.Projection;
 
 @Projection(name = "detail", types = Course.class)
 public interface CourseDetail {
+	
+	Long getId();
 
 	String getName();
 

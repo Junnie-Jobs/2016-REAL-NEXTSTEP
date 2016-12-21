@@ -36,7 +36,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor(force = true)
+//@NoArgsConstructor(force = true)
 @Data
 @EqualsAndHashCode(of = "id")
 @Entity

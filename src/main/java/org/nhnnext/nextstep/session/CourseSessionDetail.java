@@ -17,4 +17,5 @@ public interface CourseSessionDetail {
     Object getPos();
 
     CourseSession.State getState();
+    
 }

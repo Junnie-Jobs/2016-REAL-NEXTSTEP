@@ -42,19 +42,15 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Course extends AbstractAuditingEntity<User, Long> {
 
-    public Course(String name) {
+    public Course() {
         addToSessions(new MasterSession());
-        addToSessions(new CourseSession(name));
-        this.name = name;
+        addToSessions(new CourseSession("default-Session"));
+//        this.name = name;
     }
     @NotEmpty
     private String name;
 
     private String description;
-
-//    @Column(unique = true)
-//    @ManyToMany
-//    private final List<Instructor> instructors = new ArrayList<>();
 
     public List<Instructor> getInstructors() {
         if (getCreatedBy() == null) {

@@ -4,7 +4,26 @@ spring:
       base-path: /api
   profiles:
     active: production
-
+    
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+              
+  datasource:
+    url: jdbc:h2:mem:nextstep;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false
+    driverClassName: org.h2.Driver
+    username: sa
+    password: nextstep
+    
+  jpa:
+#    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database-platform: org.hibernate.dialect.H2Dialect    
+    
 security:
   oauth2:
     sso:
@@ -13,7 +32,7 @@ security:
 logging:
   level:
     org.springframework.security: DEBUG
-
+    
 github:
   client:
     accessTokenUri: https://github.com/login/oauth/access_token
@@ -21,4 +40,4 @@ github:
     clientAuthenticationScheme: form
   resource:
     userInfoUri: https://api.github.com/user
-    preferTokenInfo: false
+    preferTokenInfo: false    

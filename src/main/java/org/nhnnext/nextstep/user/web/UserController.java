@@ -15,15 +15,15 @@ public class UserController {
 
     private final UserService service;
 
-//    @PreAuthorize("isAuthenticated()")
-//    @GetMapping("/api/user")
-//    public User getAuthenticatedUser() {
-//        return service.getAuthenticatedUser().orElseGet(null);
-//    }
-
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/api/user")
-    public Principal user(Principal principal) {
-        return principal;
+    public User getAuthenticatedUser() {
+        return service.getAuthenticatedUser().orElseGet(null);
     }
+
+//    @PreAuthorize("isAuthenticated()")
+//    @GetMapping("/api/user")
+//    public Principal user(Principal principal) {
+//        return principal;
+//    }
 }

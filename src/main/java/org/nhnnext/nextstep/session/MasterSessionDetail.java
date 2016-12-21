@@ -7,6 +7,8 @@ import java.util.List;
 
 @Projection(name = "detail", types = MasterSession.class)
 public interface MasterSessionDetail {
+	
+	Long getId();
 
     List<LectureExcerpt> getLectures();
 

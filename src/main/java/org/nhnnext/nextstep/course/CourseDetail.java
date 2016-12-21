@@ -2,23 +2,24 @@ package org.nhnnext.nextstep.course;
 
 import java.util.List;
 
-import org.nhnnext.nextstep.session.SessionDetail;
-import org.nhnnext.nextstep.session.SessionExcerpt;
+import org.nhnnext.nextstep.session.CourseSessionDetail;
+import org.nhnnext.nextstep.session.CourseSessionExcerpt;
+import org.nhnnext.nextstep.session.MasterSessionDetail;
 import org.nhnnext.nextstep.user.Instructor;
 import org.springframework.data.rest.core.config.Projection;
 
 @Projection(name = "detail", types = Course.class)
 public interface CourseDetail {
 
-    String getName();
+	String getName();
 
-    String getDescription();
+	String getDescription();
 
-    List<Instructor> getInstructors();
+	List<Instructor> getInstructors();
 
-    List<SessionExcerpt> getSessions();
+	List<CourseSessionExcerpt> getCourseSessions();
 
-    SessionDetail getMasterSession();
+	MasterSessionDetail getMasterSession();
 
-    SessionDetail getDefaultSession();
+	CourseSessionDetail getDefaultSession();
 }

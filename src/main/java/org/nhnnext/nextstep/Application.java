@@ -1,7 +1,6 @@
 package org.nhnnext.nextstep;
 
 import java.lang.reflect.Field;
-
 import org.nhnnext.nextstep.course.Course;
 import org.nhnnext.nextstep.course.CourseRepository;
 import org.nhnnext.nextstep.enrollment.Enrollment;
@@ -35,59 +34,59 @@ public class Application {
 			CourseRepository courseRepository, CourseSessionRepository courseSessionRepository, LessonRepository lessonRepository, EnrollmentRepository enrollmentRepository) {
 		return (args) -> {
 
-			Field usernameField = ReflectionUtils.findField(User.class, "username");
-			ReflectionUtils.makeAccessible(usernameField);
-			
-			User student1 = new User();
-			ReflectionUtils.setField(usernameField, student1, "dayBrush");
-			student1.setName("Choi Yeonkyu");
-			student1.setAvatarUrl("https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/14494785_1303032459755018_522118762631698008_n.jpg?oh=3fa832407d4254f7e97fcba1b70d3f40&oe=58AD5DA2");
-			student1.setEmail("dayBrush@naver.com");
-			userRepository.save(student1);
-			
-			User student2 = new User();
-			Field student2UsernameField = ReflectionUtils.findField(User.class, "username");
-			ReflectionUtils.makeAccessible(student2UsernameField);
-			ReflectionUtils.setField(student2UsernameField, student2, "junniejobs");
-			student2.setName("Lim Dongjun");
-			student2.setAvatarUrl("https://avatars2.githubusercontent.com/u/3433096?v=3&s=460");
-			student2.setEmail("dj0999@naver.com");
-			userRepository.save(student2);
+//			Field usernameField = ReflectionUtils.findField(User.class, "username");
+//			ReflectionUtils.makeAccessible(usernameField);
 //			
-			User student3 = new User();
-			Field student3UsernameField = ReflectionUtils.findField(User.class, "username");
-			ReflectionUtils.makeAccessible(student3UsernameField);
-			ReflectionUtils.setField(student3UsernameField, student3, "Byeol");
-			student3.setName("Seo Jaewon");
-			student3.setAvatarUrl("https://scontent.xx.fbcdn.net/v/t1.0-9/230403_368531479891429_635986668_n.jpg?oh=a42efa9e657826e57a96db008960b817&oe=58C68AA9");
-			student3.setEmail("Byeol@naver.com");
-			userRepository.save(student3);
-			
-			Instructor professor1 = new Instructor("javajigi");
-//			Field professorUsernameField = ReflectionUtils.findField(Instructor.class, "username");
-//			ReflectionUtils.makeAccessible(professorUsernameField);
-//			ReflectionUtils.setField(professorUsernameField, professor1, "javajigi");
-			professor1.setName("jaesung");
-			professor1.setAvatarUrl("https://avatars2.githubusercontent.com/u/520500?v=3&s=400");
-			professor1.setEmail("javajigi@naver.com");
-			instructorRepository.save(professor1);
-
-			SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(professor1.getName(), professor1.getPassword(), professor1.getAuthorities()));
-			
-			Course course = new Course("jwp-basic");
-			course.setCreatedBy(professor1);
-			courseRepository.save(course);
-			
-			Enrollment e1 = new Enrollment((CourseSession) course.getDefaultSession(), student1);
-			e1.setStatus(e1.getStatus().APPROVED);					
-			enrollmentRepository.save(e1);
-			
-			Enrollment e2 = new Enrollment((CourseSession) course.getDefaultSession(), student2);
-			e2.setStatus(e2.getStatus().APPROVED);
-			enrollmentRepository.save(e2);
+//			User student1 = new User();
+//			ReflectionUtils.setField(usernameField, student1, "dayBrush");
+//			student1.setName("Choi Yeonkyu");
+//			student1.setAvatarUrl("https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/14494785_1303032459755018_522118762631698008_n.jpg?oh=3fa832407d4254f7e97fcba1b70d3f40&oe=58AD5DA2");
+//			student1.setEmail("dayBrush@naver.com");
+//			userRepository.save(student1);
 //			
-			Enrollment e3 = new Enrollment((CourseSession) course.getDefaultSession(), student3);
-			enrollmentRepository.save(e3);
+//			User student2 = new User();
+//			Field student2UsernameField = ReflectionUtils.findField(User.class, "username");
+//			ReflectionUtils.makeAccessible(student2UsernameField);
+//			ReflectionUtils.setField(student2UsernameField, student2, "junniejobs");
+//			student2.setName("Lim Dongjun");
+//			student2.setAvatarUrl("https://avatars2.githubusercontent.com/u/3433096?v=3&s=460");
+//			student2.setEmail("dj0999@naver.com");
+//			userRepository.save(student2);
+////			
+//			User student3 = new User();
+//			Field student3UsernameField = ReflectionUtils.findField(User.class, "username");
+//			ReflectionUtils.makeAccessible(student3UsernameField);
+//			ReflectionUtils.setField(student3UsernameField, student3, "Byeol");
+//			student3.setName("Seo Jaewon");
+//			student3.setAvatarUrl("https://scontent.xx.fbcdn.net/v/t1.0-9/230403_368531479891429_635986668_n.jpg?oh=a42efa9e657826e57a96db008960b817&oe=58C68AA9");
+//			student3.setEmail("Byeol@naver.com");
+//			userRepository.save(student3);
+//			
+//			Instructor professor1 = new Instructor("javajigi");
+////			Field professorUsernameField = ReflectionUtils.findField(Instructor.class, "username");
+////			ReflectionUtils.makeAccessible(professorUsernameField);
+////			ReflectionUtils.setField(professorUsernameField, professor1, "javajigi");
+//			professor1.setName("jaesung");
+//			professor1.setAvatarUrl("https://avatars2.githubusercontent.com/u/520500?v=3&s=400");
+//			professor1.setEmail("javajigi@naver.com");
+//			instructorRepository.save(professor1);
+//
+//			SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(professor1.getName(), professor1.getPassword(), professor1.getAuthorities()));
+//			
+//			Course course = new Course("jwp-basic");
+//			course.setCreatedBy(professor1);
+//			courseRepository.save(course);
+//
+//			Enrollment e1 = new Enrollment((CourseSession) course.getDefaultSession(), student1);
+//			e1.setStatus(e1.getStatus().APPROVED);					
+//			enrollmentRepository.save(e1);
+//			
+//			Enrollment e2 = new Enrollment((CourseSession) course.getDefaultSession(), student2);
+//			e2.setStatus(e2.getStatus().APPROVED);
+//			enrollmentRepository.save(e2);
+////			
+//			Enrollment e3 = new Enrollment((CourseSession) course.getDefaultSession(), student3);
+//			enrollmentRepository.save(e3);
 
 //			Lecture lecture0 = new Lecture("orientation");
 //			lectureRepository.save(lecture0);

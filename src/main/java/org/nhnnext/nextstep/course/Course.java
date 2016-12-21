@@ -1,12 +1,11 @@
 package org.nhnnext.nextstep.course;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -33,12 +32,10 @@ import org.springframework.security.core.Authentication;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
 @NoArgsConstructor(force = true)
 @Data
 @EqualsAndHashCode(of = "id")
@@ -46,13 +43,10 @@ import lombok.NoArgsConstructor;
 public class Course extends AbstractAuditingEntity<User, Long> {
 
     public Course(String name) {
-    	Date dt = new Date();
-    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM"); 
-        addToSessions(new MasterSession(name));
-        addToSessions(new CourseSession(name+"-"+sdf.format(dt).toString(), "default"));
+        addToSessions(new MasterSession());
+        addToSessions(new CourseSession(name));
         this.name = name;
     }
-
     @NotEmpty
     private String name;
 
@@ -72,30 +66,41 @@ public class Course extends AbstractAuditingEntity<User, Long> {
 
 //    @Column(unique = true)
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course", orphanRemoval = true)
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "course")//(mappedBy = "course", fetch = FetchType.LAZY)
 //    @Cascade(CascadeType.ALL)
     private final List<Session> sessions = new ArrayList<>();
 
-    public Optional<Session> getSession(String role) {
-        return getSessions().stream().filter(x -> Objects.equals(x.getRole(), role)).findFirst();
+    @Transient
+    public List<Session> getCourseSessions() {
+        return this.sessions.stream().filter(x -> x instanceof CourseSession).collect(Collectors.toList());
     }
+
+//    public Optional<Session> getSession(String name) {
+//        return getSessions().stream().filter(x -> Objects.equals(x.getName(), name)).findFirst();
+//    }
 
     @Transient
     @JsonIgnore
     public Session getMasterSession() {
-        return getSession("master").orElseGet(null);
+        return this.sessions.stream().filter(x -> x instanceof MasterSession).findFirst().orElseGet(null);
+//        return getSession("master").orElseGet(null);
     }
 
     @Transient
     @JsonIgnore
     public Session getDefaultSession() {
-        return getSession("default").orElseGet(null);
+        return this.sessions.stream().filter(x -> x instanceof CourseSession).findFirst().orElseGet(null);
+//        return getSession("default").orElseGet(null);
     }
-    
+
     public void addToSessions(Session session) {
         getSessions().add(session);
         session.setCourse(this);
     }
+
+    //    @OneToOne(cascade = CascadeType.ALL, mappedBy = "course")
+//    private MasterSession masterSession;
 
     public boolean isInstructor(Authentication authentication) {
         return getInstructors().contains(AuthenticationUtils.getUser(authentication));

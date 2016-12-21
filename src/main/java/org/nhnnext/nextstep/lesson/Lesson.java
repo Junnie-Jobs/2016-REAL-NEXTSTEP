@@ -25,7 +25,7 @@ public class Lesson extends AbstractEntity {
     @NotEmpty
     private String name;
 
-    @NotEmpty
+//    @NotEmpty
     private String content;
 
     @ManyToOne(cascade = CascadeType.REFRESH, optional = false)

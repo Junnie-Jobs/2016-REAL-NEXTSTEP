@@ -5,9 +5,15 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+
+import org.nhnnext.nextstep.course.Course;
 
 @NoArgsConstructor(force = true)
 @Data
@@ -25,11 +31,16 @@ public class Instructor extends User {
     public String getRole() {
         return GrantedAuthorities.ROLE_INSTRUCTOR;
     }
+    
 
-    //    @Column(unique = true)
-//    @ManyToMany(mappedBy = "instructors")
+
 //    @OneToMany(mappedBy = "createdBy")
 //    private final List<Course> courses = new ArrayList<>();
+//    
+//    @Transient
+//    public List<Course> getCourses(){
+//    	return this.courses;
+//    }
 
     //    private final List<Session> sessions = new ArrayList<>();
 }

@@ -1,20 +1,26 @@
 package org.nhnnext.nextstep.session;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
-import org.nhnnext.nextstep.enrollment.Enrollment;
-import org.nhnnext.nextstep.enrollment.EnrollmentException;
-import org.nhnnext.nextstep.user.AuthenticationUtils;
-import org.nhnnext.nextstep.user.SecurityUser;
-import org.nhnnext.nextstep.user.User;
-import org.springframework.security.core.Authentication;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import org.nhnnext.nextstep.enrollment.Enrollment;
+import org.nhnnext.nextstep.enrollment.EnrollmentException;
+import org.nhnnext.nextstep.user.AuthenticationUtils;
+import org.nhnnext.nextstep.user.User;
+import org.springframework.security.core.Authentication;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 @NoArgsConstructor(force = true)
 @RequiredArgsConstructor
@@ -86,6 +92,6 @@ public class CourseSession extends Session {
 
     }
     public enum State {
-        UPCOMING, IN_SESSION
+        UPCOMING, IN_SESSION, EXPIRED
     }
 }

@@ -33,19 +33,15 @@ import java.util.stream.Collectors;
 @Entity
 public class Course extends AbstractCourseEntity {
 
-    public Course() {
-        addToSessions(new MasterSession());
-        addToSessions(new CourseSession("Default Session"));
-    }
-
     @NotEmpty
     private String name;
 
     private String description;
-
-//    @Column(unique = true)
-//    @ManyToMany
-//    private final List<Instructor> instructors = new ArrayList<>();
+    
+    public Course() {
+        addToSessions(new MasterSession());
+        addToSessions(new CourseSession("Default Session"));
+    }
 
     public List<Instructor> getInstructors() {
         if (getCreatedBy() == null) {
@@ -54,7 +50,7 @@ public class Course extends AbstractCourseEntity {
 
         return Collections.unmodifiableList(Collections.singletonList((Instructor) getCreatedBy()));
     }
-
+    
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
     private final List<Session> sessions = new ArrayList<>();
@@ -84,6 +80,10 @@ public class Course extends AbstractCourseEntity {
     public boolean isInstructor(Authentication authentication) {
         return getInstructors().contains(AuthenticationUtils.getUser(authentication));
     }
+    
+//    내가 개설한 강의 목록
+//    내가 신청한 강의 목록
+
 
     @JsonIgnore
     @Transient

@@ -1,3 +1,17 @@
 logging:
   level:
     org.springframework.security: DEBUG
+
+
+spring:
+  thymeleaf:
+    cache: false
+  datasource:
+    url: jdbc:mysql://125.209.200.185:3306/nextstep?useUnicode=true&charaterEncoding=utf-8
+    driverClassName: com.mysql.jdbc.Driver
+    username: nextstep
+    password: nextstep567
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update

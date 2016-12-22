@@ -6,5 +6,7 @@ import org.springframework.data.rest.core.config.Projection;
 @Projection(name = "excerpt", types = Discussion.class)
 public interface DiscussionExcerpt {
 
+	Long getId();
+	
     String getComment();
 }

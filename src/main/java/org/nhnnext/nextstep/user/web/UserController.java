@@ -1,6 +1,8 @@
 package org.nhnnext.nextstep.user.web;
 
 import lombok.RequiredArgsConstructor;
+
+import org.nhnnext.nextstep.user.User;
 import org.nhnnext.nextstep.user.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,15 +16,21 @@ public class UserController {
 
     private final UserService service;
 
-//    @PreAuthorize("isAuthenticated()")
-//    @GetMapping("/api/user")
-//    public User getAuthenticatedUser() {
-//        return service.getAuthenticatedUser().orElseGet(null);
-//    }
-
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/api/user")
-    public Principal user(Principal principal) {
-        return principal;
+    public User getAuthenticatedUser() {
+    	
+    	if(service.getAuthenticatedUser() == null){
+    		
+    	}else{
+    		
+    	}
+        return service.getAuthenticatedUser().orElseGet(null);
     }
+
+//    @PreAuthorize("isAuthenticated()")
+//    @GetMapping("/api/user")
+//    public Principal user(Principal principal) {
+//        return principal;
+//    }
 }

@@ -5,6 +5,8 @@ import org.springframework.data.rest.core.config.Projection;
 
 @Projection(name = "excerpt", types = Enrollment.class)
 public interface EnrollmentExcerpt {
+	
+	Long getId();
 
     User getUser();
 

@@ -37,6 +37,11 @@ public interface AuditingRepository<T, ID extends Serializable> extends CrudRepo
     @Override
     List<T> findAll(Iterable<ID> ids);
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @Override
+    long count();
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     void delete(ID id);
 
     @PreAuthorize("hasPermission(#entity, 'delete')")
@@ -46,4 +51,8 @@ public interface AuditingRepository<T, ID extends Serializable> extends CrudRepo
     @PreFilter("hasPermission(filterTarget, 'delete')")
     @Override
     void delete(Iterable<? extends T> entities);
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @Override
+    void deleteAll();
 }

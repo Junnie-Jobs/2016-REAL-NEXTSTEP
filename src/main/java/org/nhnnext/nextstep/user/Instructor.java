@@ -1,12 +1,13 @@
 package org.nhnnext.nextstep.user;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Transient;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 @NoArgsConstructor(force = true)
 @Data
@@ -24,16 +25,13 @@ public class Instructor extends User {
     public String getRole() {
         return GrantedAuthorities.ROLE_INSTRUCTOR;
     }
-    
 
+//    private final List<Course> courses = new ArrayList<>();
 
+    //    @Column(unique = true)
+//    @ManyToMany(mappedBy = "instructors")
 //    @OneToMany(mappedBy = "createdBy")
 //    private final List<Course> courses = new ArrayList<>();
-//    
-//    @Transient
-//    public List<Course> getCourses(){
-//    	return this.courses;
-//    }
 
     //    private final List<Session> sessions = new ArrayList<>();
 }

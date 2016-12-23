@@ -1,12 +1,20 @@
 package org.nhnnext.nextstep.discussion;
 
-import org.nhnnext.nextstep.lesson.Lesson;
+import org.nhnnext.nextstep.user.UserExcerpt;
 import org.springframework.data.rest.core.config.Projection;
 
-@Projection(name = "excerpt", types = Discussion.class)
+import java.time.LocalDateTime;
+
+@Projection(name = "excerpt", types = { Discussion.class, DiscussionReply.class })
 public interface DiscussionExcerpt {
 
-	Long getId();
-	
+    Long getId();
+
     String getComment();
+
+    UserExcerpt getCreatedBy();
+
+    LocalDateTime getCreatedDate();
+
+    LocalDateTime getLastModifiedDate();
 }

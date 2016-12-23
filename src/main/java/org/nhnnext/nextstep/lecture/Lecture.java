@@ -1,12 +1,9 @@
 package org.nhnnext.nextstep.lecture;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.nhnnext.nextstep.core.ObjectConverter;
 import org.nhnnext.nextstep.lesson.Lesson;
@@ -15,10 +12,10 @@ import org.nhnnext.nextstep.session.Session;
 import org.nhnnext.nextstep.session.domain.AbstractCourseSessionEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.util.Assert;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor(force = true)
 @Data

@@ -5,7 +5,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface InstructorRepository extends CrudRepository<Instructor, Long> {
+public interface AdministratorRepository extends CrudRepository<Administrator, Long> {
 
-    Optional<Instructor> findByUsername(@Param("username") String username);
+    Optional<Administrator> findByUsername(@Param("username") String username);
 }

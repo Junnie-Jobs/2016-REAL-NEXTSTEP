@@ -1,32 +1,33 @@
 package org.nhnnext.nextstep.user.web;
 
-import java.util.HashMap;
-import java.util.Map;
-import org.nhnnext.nextstep.course.CourseRepository;
+import lombok.RequiredArgsConstructor;
+import org.nhnnext.nextstep.user.User;
 import org.nhnnext.nextstep.user.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityLinks;
+import org.springframework.hateoas.ExposesResourceFor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequiredArgsConstructor
-@RestController
+@Controller
+@RequestMapping("/api/user")
+@ExposesResourceFor(User.class)
 public class UserController {
 
-	private final UserService service;
+    private final UserService service;
+    private final EntityLinks entityLinks;
 
-	@Autowired
-	private CourseRepository courseRepository;
-
-	@PreAuthorize("isAuthenticated()")
-	@GetMapping("/api/user")
-	public Map<String, Object> getAuthenticatedUser(Authentication authentication) {
-		Map<String, Object> map = new HashMap<>();
-		map.put("user", service.getAuthenticatedUser().orElseGet(null));
-		map.put("authorities", authentication.getAuthorities());
-		return map;
-	}
-
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping
+    public ResponseEntity<?> getAuthenticatedUser(Authentication authentication) {
+        User user = service.getAuthenticatedUser().orElseGet(null);
+        UserResource resource = new UserResource(user.getId(), user, authentication.getAuthorities());
+        resource.add(entityLinks.linkToSingleResource(user));
+        return new ResponseEntity<>(resource, HttpStatus.OK);
+    }
 }

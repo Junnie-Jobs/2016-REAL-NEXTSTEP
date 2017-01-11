@@ -1,3 +1,4 @@
 spring:
   profiles:
-    active: common,nextstep,local,dev
+#    active: common,nextstep,local,dev
+    active: common,nextstep,production
